@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KitStack.org — Free Browser Tools by Twilight Surfers</title>
+    <meta name="description" content="Free browser utilities from Twilight Surfers — color palettes, CSS shadows, JSON inspector, responsive units, and more. No accounts. No backend required." />
+    <meta property="og:title" content="KitStack.org — Free Browser Tools by Twilight Surfers" />
+    <meta property="og:description" content="Free browser utilities from Twilight Surfers — color palettes, CSS shadows, JSON inspector, responsive units, and more. No accounts. No backend required." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Synchronous Theme Bootstrap to guarantee zero-FOUC / no screen flash -->
+    <script>
+      (function() {
+        try {
+          var raw = localStorage.getItem('kitstack_settings');
+          var theme = 'dark';
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (parsed && parsed.theme) {
+              theme = parsed.theme;
+            }
+          }
+          var isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-neutral-100 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
