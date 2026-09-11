@@ -70,21 +70,25 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ view, onBack, accentColo
 const PrivacyBody: React.FC = () => (
   <>
     <p>
-      KitStack&apos;s free browser tools are built to stay on your device. We do not collect personal
-      accounts, login profiles, or run analytics backends for these tools.
+      KitStack&apos;s free tools still don&apos;t require accounts or login. What you type into the
+      tools stays in your browser — we&apos;re not building personal profiles off your work.
     </p>
     <p>
-      Preferences such as theme, open tabs, accent color, and related UI settings may use{' '}
-      <strong className="text-neutral-800 dark:text-neutral-100">
-        local browser storage / cookies-style storage
-      </strong>{' '}
-      on your device so your workspace persists between visits. That data stays with you — it is not
-      uploaded to a KitStack account service.
+      We use privacy-friendly traffic analytics (MavenMVP analytics / Umami-style at{' '}
+      <strong className="text-neutral-800 dark:text-neutral-100">analytics.mavenmvp.com</strong>) to
+      understand who visits: broad aggregates like pages, referrers, countries, and devices — not
+      sold-off personal dossiers.
     </p>
-    <p>We do not sell your data. These free tools are provided as-is for builders who want a fast, offline-friendly toolkit.</p>
+    <p>
+      Preferences such as theme, open tabs, accent color, and related UI settings still use{' '}
+      <strong className="text-neutral-800 dark:text-neutral-100">
+        local browser storage
+      </strong>{' '}
+      on your device so your workspace persists between visits. That stays with you.
+    </p>
+    <p>We do not sell your data.</p>
     <p className="text-neutral-400 dark:text-neutral-500 text-[11px]">
-      If third-party CDNs (for example avatar or font hosts) appear in the page, their own policies
-      apply to those requests.
+      Third-party CDNs (for example avatar or font hosts) have their own policies for those requests.
     </p>
   </>
 );
