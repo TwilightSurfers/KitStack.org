@@ -349,7 +349,7 @@ export default function App() {
           </div>
         </main>
 
-        <SiteFooter onOpenLegal={setLegalView} />
+        <SiteFooter onOpenLegal={setLegalView} accentColor={settings.accentColor} />
 
         {/* Floating Notification Toast */}
         <ToastBanner />

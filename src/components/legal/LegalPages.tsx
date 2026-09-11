@@ -60,7 +60,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ view, onBack, accentColo
         <div className="px-5 py-5 space-y-4 text-xs leading-relaxed text-neutral-600 dark:text-neutral-300">
           {view === 'privacy' && <PrivacyBody />}
           {view === 'terms' && <TermsBody />}
-          {view === 'contact' && <ContactBody />}
+          {view === 'contact' && <ContactBody accentColor={accentColor} />}
         </div>
       </article>
     </div>
@@ -113,7 +113,7 @@ const TermsBody: React.FC = () => (
   </>
 );
 
-const ContactBody: React.FC = () => (
+const ContactBody: React.FC<{ accentColor: string }> = ({ accentColor }) => (
   <>
     <p>
       The best — and currently only practical — way to reach Twilight Surfers about KitStack is on X.
@@ -123,7 +123,8 @@ const ContactBody: React.FC = () => (
       href="https://x.com/TwilightSurfers"
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white shadow-xs transition-opacity hover:opacity-90 bg-violet-600 hover:bg-violet-500"
+      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white shadow-xs transition-opacity hover:opacity-90"
+      style={{ backgroundColor: accentColor }}
     >
       <span>@TwilightSurfers on X</span>
       <ExternalLink className="w-3.5 h-3.5 opacity-80" aria-hidden />
