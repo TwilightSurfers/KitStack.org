@@ -214,19 +214,20 @@ export const ShadowGlowTool: React.FC<ShadowGlowToolProps> = ({ accentColor }) =
           </div>
 
           {/* Code snippet */}
-          <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-900 text-neutral-100">
+          <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono text-neutral-400">CSS box-shadow</span>
+              <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">CSS box-shadow</span>
               <button
                 type="button"
                 onClick={handleCopy}
-                className="text-xs text-indigo-400 hover:text-indigo-300 flex items-center gap-1 font-mono"
+                className="text-xs flex items-center gap-1 font-mono hover:opacity-80"
+                style={{ color: accentColor }}
               >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copied ? 'Copied' : 'Copy CSS'}</span>
               </button>
             </div>
-            <pre className="text-xs font-mono text-neutral-300 p-2.5 rounded bg-black/40 overflow-x-auto whitespace-pre-wrap break-all">
+            <pre className="text-xs font-mono text-neutral-800 dark:text-neutral-300 p-2.5 rounded bg-neutral-50 dark:bg-black/40 overflow-x-auto whitespace-pre-wrap break-all">
               {cssValue}
             </pre>
           </div>

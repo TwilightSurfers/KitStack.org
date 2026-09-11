@@ -223,21 +223,22 @@ export const ColorStudioTool: React.FC<ColorStudioToolProps> = ({ accentColor })
           </div>
 
           {/* Export Code Box */}
-          <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-900 text-neutral-100">
+          <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono text-neutral-400">
+              <span className="text-xs font-mono text-neutral-500 dark:text-neutral-400">
                 Export: {colorFormat.toUpperCase()} Variables
               </span>
               <button
                 type="button"
                 onClick={handleCopyCode}
-                className="text-xs text-indigo-400 hover:text-indigo-300 flex items-center gap-1 font-mono"
+                className="text-xs flex items-center gap-1 font-mono hover:opacity-80"
+                style={{ color: accentColor }}
               >
-                {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copiedCode ? 'Copied' : 'Copy'}</span>
               </button>
             </div>
-            <pre className="text-xs font-mono text-neutral-300 overflow-x-auto p-2 rounded bg-black/40 max-h-48 scrollbar-thin">
+            <pre className="text-xs font-mono text-neutral-800 dark:text-neutral-300 overflow-x-auto p-2 rounded bg-neutral-50 dark:bg-black/40 max-h-48 scrollbar-thin">
               {getExportCode()}
             </pre>
           </div>

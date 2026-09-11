@@ -198,16 +198,16 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
             </div>
 
             {/* Generated clamp preview */}
-            <div className="p-3 rounded-lg bg-neutral-900 text-neutral-100 flex items-center justify-between gap-2">
-              <code className="text-xs font-mono text-emerald-400 truncate">
+            <div className="p-3 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 flex items-center justify-between gap-2">
+              <code className="text-xs font-mono text-emerald-600 dark:text-emerald-400 truncate">
                 {clampCss}
               </code>
               <button
                 type="button"
                 onClick={handleCopyClamp}
-                className="px-2.5 py-1 rounded bg-neutral-800 hover:bg-neutral-700 text-xs font-medium flex items-center gap-1 text-white flex-shrink-0"
+                className="px-2.5 py-1 rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-xs font-medium flex items-center gap-1 text-neutral-800 dark:text-neutral-100 flex-shrink-0"
               >
-                {copiedClamp ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                {copiedClamp ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
                 <span>Copy</span>
               </button>
             </div>

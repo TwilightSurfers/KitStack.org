@@ -357,23 +357,24 @@ export const MyCustomPlugin: KitStackPlugin = {
           </div>
 
           {/* Plugin Template & Contract Code */}
-          <div className="p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-900 text-neutral-100 space-y-3">
+          <div className="p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Code className="w-4 h-4 text-indigo-400" />
-                <span className="text-xs font-bold uppercase tracking-wider text-neutral-300">
+                <Code className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   Plug & Play Starter Template (KitStackPlugin Contract)
                 </span>
               </div>
               <button
                 onClick={() => handleCopyCode('boilerplate', samplePluginBoilerplate, 'Plugin Boilerplate')}
-                className="text-xs text-indigo-400 hover:text-indigo-300 flex items-center gap-1.5 font-mono px-2.5 py-1 rounded bg-neutral-800/80"
+                className="text-xs flex items-center gap-1.5 font-mono px-2.5 py-1 rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+                style={{ color: accentColor }}
               >
-                {copiedSnippet === 'boilerplate' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                {copiedSnippet === 'boilerplate' ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>Copy TypeScript Starter</span>
               </button>
             </div>
-            <pre className="text-xs font-mono text-neutral-300 p-4 rounded-lg bg-black/40 overflow-x-auto whitespace-pre leading-relaxed">
+            <pre className="text-xs font-mono text-neutral-800 dark:text-neutral-300 p-4 rounded-lg bg-neutral-50 dark:bg-black/40 overflow-x-auto whitespace-pre leading-relaxed">
               {samplePluginBoilerplate}
             </pre>
           </div>
