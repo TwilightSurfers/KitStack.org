@@ -84,7 +84,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                     type="number"
                     value={basePx}
                     onChange={(e) => setBasePx(Math.max(1, parseInt(e.target.value, 10) || 16))}
-                    className="w-full px-3 py-2 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
+                    className="w-full px-3 py-2 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 caret-neutral-900 dark:caret-neutral-100"
                   />
                   <span className="text-xs font-mono text-neutral-400">px</span>
                 </div>
@@ -99,7 +99,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                     type="number"
                     value={inputPx}
                     onChange={(e) => setInputPx(parseInt(e.target.value, 10) || 0)}
-                    className="w-full px-3 py-2 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100"
+                    className="w-full px-3 py-2 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 caret-neutral-900 dark:caret-neutral-100"
                   />
                   <span className="text-xs font-mono text-neutral-400">px</span>
                 </div>
@@ -113,7 +113,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                   navigator.clipboard.writeText(`${remValue}rem`);
                   addNotification({ title: 'Copied REM', message: `${remValue}rem`, type: 'info', toolSource: 'Unit Tool' });
                 }}
-                className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-neutral-100 cursor-pointer transition-colors text-center"
+                className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer transition-colors text-center"
               >
                 <span className="text-[10px] text-neutral-400 font-mono block">REM</span>
                 <span className="text-sm font-bold text-neutral-900 dark:text-neutral-100 font-mono">
@@ -126,7 +126,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                   navigator.clipboard.writeText(`${ptValue}pt`);
                   addNotification({ title: 'Copied PT', message: `${ptValue}pt`, type: 'info', toolSource: 'Unit Tool' });
                 }}
-                className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-neutral-100 cursor-pointer transition-colors text-center"
+                className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer transition-colors text-center"
               >
                 <span className="text-[10px] text-neutral-400 font-mono block">Points</span>
                 <span className="text-sm font-bold text-neutral-900 dark:text-neutral-100 font-mono">
@@ -139,7 +139,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                   navigator.clipboard.writeText(`${percentValue}%`);
                   addNotification({ title: 'Copied Percent', message: `${percentValue}%`, type: 'info', toolSource: 'Unit Tool' });
                 }}
-                className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-neutral-100 cursor-pointer transition-colors text-center"
+                className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer transition-colors text-center"
               >
                 <span className="text-[10px] text-neutral-400 font-mono block">Percent</span>
                 <span className="text-sm font-bold text-neutral-900 dark:text-neutral-100 font-mono">
@@ -165,7 +165,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                   type="number"
                   value={minViewport}
                   onChange={(e) => setMinViewport(parseInt(e.target.value, 10) || 320)}
-                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400"
                 />
               </div>
               <div>
@@ -174,7 +174,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                   type="number"
                   value={maxViewport}
                   onChange={(e) => setMaxViewport(parseInt(e.target.value, 10) || 1280)}
-                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400"
                 />
               </div>
               <div>
@@ -183,7 +183,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                   type="number"
                   value={minSizePx}
                   onChange={(e) => setMinSizePx(parseInt(e.target.value, 10) || 14)}
-                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400"
                 />
               </div>
               <div>
@@ -192,7 +192,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                   type="number"
                   value={maxSizePx}
                   onChange={(e) => setMaxSizePx(parseInt(e.target.value, 10) || 36)}
-                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400"
                 />
               </div>
             </div>

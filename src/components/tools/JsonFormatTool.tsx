@@ -207,7 +207,7 @@ export const JsonFormatTool: React.FC<JsonFormatToolProps> = ({ accentColor }) =
               setError(err instanceof Error ? err.message : 'Invalid JSON');
             }
           }}
-          className="w-full h-96 p-4 font-mono text-xs bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 border-none outline-none resize-y focus:ring-0 leading-relaxed"
+          className="w-full h-96 p-4 font-mono text-xs bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 caret-neutral-900 dark:caret-neutral-100 placeholder:text-neutral-400 border-none outline-none resize-y focus:ring-0 leading-relaxed"
           placeholder="Paste or write raw JSON here..."
           spellCheck={false}
         />

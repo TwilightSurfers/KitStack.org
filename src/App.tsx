@@ -8,6 +8,8 @@ import { AppSettings, OpenTab, ThemeMode } from './types';
 import { NotificationProvider } from './context/NotificationContext';
 import { ToastBanner } from './components/shared/ToastBanner';
 import { DesignerBadge } from './components/shared/DesignerBadge';
+import { SiteFooter, LegalView } from './components/shared/SiteFooter';
+import { LegalPages } from './components/legal/LegalPages';
 import { Header } from './components/navigation/Header';
 import { TabBar } from './components/navigation/TabBar';
 import { SettingsModal } from './components/settings/SettingsModal';
@@ -153,6 +155,9 @@ export default function App() {
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
   const [isMobileSwitcherOpen, setIsMobileSwitcherOpen] = useState(false);
 
+  // In-app legal pages (no react-router)
+  const [legalView, setLegalView] = useState<LegalView | null>(null);
+
   // Sync settings to localStorage
   useEffect(() => {
     try {
@@ -230,6 +235,7 @@ export default function App() {
 
   // Tab operations
   const handleSelectTab = (tabId: string) => {
+    setLegalView(null);
     setActiveTabId(tabId);
   };
 
@@ -267,9 +273,11 @@ export default function App() {
     };
     setTabs((prev) => [...prev, newTab]);
     setActiveTabId(newTabId);
+    setLegalView(null);
   };
 
   const handleOpenTool = (toolId: string) => {
+    setLegalView(null);
     // If tool is already open, switch to it
     const existing = tabs.find((t) => t.toolId === toolId);
     if (existing) {
@@ -322,16 +330,26 @@ export default function App() {
           accentColor={settings.accentColor}
         />
 
-        {/* Main Content Viewport: Renders current active tool via plug-and-play plugin registry */}
-        <main className="flex-1 overflow-y-auto">
+        {/* Main Content Viewport: legal panel or active tool via plugin registry */}
+        <main className="flex-1 overflow-y-auto pb-6">
           <div className={`mx-auto w-full ${densityContainerClass}`}>
-            <PluginViewport
-              activeTab={activeTab}
-              settings={settings}
-              onOpenCatalog={() => setIsCatalogOpen(true)}
-            />
+            {legalView ? (
+              <LegalPages
+                view={legalView}
+                onBack={() => setLegalView(null)}
+                accentColor={settings.accentColor}
+              />
+            ) : (
+              <PluginViewport
+                activeTab={activeTab}
+                settings={settings}
+                onOpenCatalog={() => setIsCatalogOpen(true)}
+              />
+            )}
           </div>
         </main>
+
+        <SiteFooter onOpenLegal={setLegalView} />
 
         {/* Floating Notification Toast */}
         <ToastBanner />
