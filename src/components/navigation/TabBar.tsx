@@ -227,12 +227,12 @@ export const TabBar: React.FC<TabBarProps> = ({
                     : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200/60 dark:hover:bg-neutral-800/60 border border-transparent';
                 } else if (tabStyle === 'chrome-tab') {
                   tabClasses = isActive
-                    ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border-t-2 border-x border-neutral-200 dark:border-neutral-700 rounded-t-lg -mb-px'
+                    ? 'bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 border-t-2 border-accent border-x border-neutral-200 dark:border-neutral-700 rounded-t-lg -mb-px'
                     : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200/40 dark:hover:bg-neutral-800/40 border border-transparent';
                 } else {
                   // minimal-line
                   tabClasses = isActive
-                    ? 'text-neutral-900 dark:text-neutral-100 border-b-2 font-semibold'
+                    ? 'text-neutral-900 dark:text-neutral-100 border-b-2 border-accent font-semibold'
                     : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 border-b-2 border-transparent';
                 }
 
@@ -255,29 +255,17 @@ export const TabBar: React.FC<TabBarProps> = ({
                         setContextMenuTabId(contextMenuTabId === tab.tabId ? null : tab.tabId);
                       }}
                       className={`h-9 px-3 min-w-[44px] rounded-lg text-xs font-medium flex items-center gap-2 transition-all cursor-pointer ${tabClasses}`}
-                      style={{
-                        borderColor:
-                          tabStyle === 'minimal-line' && isActive
-                            ? accentColor
-                            : tabStyle === 'chrome-tab' && isActive
-                            ? accentColor
-                            : undefined,
-                      }}
                       title={`${tool.name} (Right-click for options)`}
                     >
                       {/* Active Accent Indicator Dot for modern-pill */}
                       {isActive && tabStyle === 'modern-pill' && (
-                        <span
-                          className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                          style={{ backgroundColor: accentColor }}
-                        />
+                        <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-accent" />
                       )}
 
                       <Icon
                         className={`w-3.5 h-3.5 flex-shrink-0 ${
-                          isActive ? 'text-indigo-600 dark:text-indigo-400' : 'text-neutral-400'
+                          isActive ? 'text-accent' : 'text-neutral-400 dark:text-neutral-500'
                         }`}
-                        style={{ color: isActive ? accentColor : undefined }}
                       />
 
                       <span className="truncate max-w-[110px] sm:max-w-[140px] text-left">

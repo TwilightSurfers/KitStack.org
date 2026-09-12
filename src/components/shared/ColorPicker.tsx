@@ -183,7 +183,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
               value={hexInput}
               onChange={handleHexChange}
               placeholder="#4F46E5"
-              className="w-full px-2.5 py-1.5 font-mono text-sm font-semibold rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800/80 text-neutral-900 dark:text-neutral-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 uppercase"
+              className="w-full px-2.5 py-1.5 font-mono text-sm font-semibold rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800/80 text-neutral-900 dark:text-neutral-50 focus:outline-none focus:ring-2 focus:ring-accent uppercase"
             />
             <button
               type="button"
@@ -268,7 +268,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
             step="0.01"
             value={alpha}
             onChange={handleAlphaChange}
-            className="w-full h-3 rounded-lg appearance-none cursor-pointer outline-none shadow-inner bg-gradient-to-r from-transparent to-current text-indigo-500"
+            className="w-full h-3 rounded-lg appearance-none cursor-pointer outline-none shadow-inner bg-gradient-to-r from-transparent to-current text-accent accent-theme"
           />
         </div>
       )}
@@ -303,7 +303,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                 }}
                 className={`w-6 h-6 rounded-md border transition-transform hover:scale-110 active:scale-95 ${
                   value.toLowerCase() === preset.toLowerCase()
-                    ? 'ring-2 ring-indigo-500 ring-offset-1 dark:ring-offset-neutral-900 border-white'
+                    ? 'ring-2 ring-accent ring-offset-1 dark:ring-offset-neutral-900 border-white'
                     : 'border-neutral-300 dark:border-neutral-700'
                 }`}
                 style={{ backgroundColor: preset }}

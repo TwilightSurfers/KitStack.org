@@ -100,8 +100,7 @@ export const SharedLibraryExplorer: React.FC<SharedLibraryExplorerProps> = ({ ac
                       type: 'success',
                     });
                   }}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold text-white shadow-xs"
-                  style={{ backgroundColor: context.accentColor }}
+                  className="px-4 py-2 rounded-xl text-xs font-semibold shadow-xs bg-accent hover:opacity-90"
                 >
                   Increment Counter: {counter}
                 </button>
@@ -187,8 +186,7 @@ export const MyCustomTool: React.FC<PluginComponentProps> = ({ context }) => {
         <ColorPicker value={accent} onChange={setAccent} label="Tool Accent" />
         <button
           onClick={handleSave}
-          className="px-4 py-2 rounded-xl text-xs font-semibold text-white shadow-xs"
-          style={{ backgroundColor: context.accentColor }}
+          className="px-4 py-2 rounded-xl text-xs font-semibold shadow-xs bg-accent hover:opacity-90"
         >
           Save to Isolated Sandbox
         </button>
@@ -270,14 +268,14 @@ export const MyCustomPlugin: KitStackPlugin = {
           {/* Executive Pillars */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-1.5">
-              <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-accent-subtle text-accent flex items-center justify-center">
                 <Terminal className="w-4 h-4" />
               </div>
               <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100">
                 1. Zero-Touch Host
               </h4>
               <p className="text-[11px] text-neutral-500 dark:text-neutral-400 leading-relaxed">
-                App shell routing contains no hardcoded switch-cases. Tools are discovered and rendered directly from the singleton <code className="font-mono text-indigo-500">PluginRegistry</code>.
+                App shell routing contains no hardcoded switch-cases. Tools are discovered and rendered directly from the singleton <code className="font-mono text-accent">PluginRegistry</code>.
               </p>
             </div>
 
@@ -322,12 +320,12 @@ export const MyCustomPlugin: KitStackPlugin = {
           <div className="p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-indigo-500" />
+                <BookOpen className="w-4 h-4 text-accent" />
                 <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 dark:text-neutral-100">
                   Architectural Topology & Runtime Ingress
                 </h3>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-900/50">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-accent-subtle text-accent border border-accent-subtle">
                 docs/PLUGIN_SPECIFICATION.md
               </span>
             </div>
@@ -360,15 +358,14 @@ export const MyCustomPlugin: KitStackPlugin = {
           <div className="p-5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Code className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                <Code className="w-4 h-4 text-accent" />
                 <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                   Plug & Play Starter Template (KitStackPlugin Contract)
                 </span>
               </div>
               <button
                 onClick={() => handleCopyCode('boilerplate', samplePluginBoilerplate, 'Plugin Boilerplate')}
-                className="text-xs flex items-center gap-1.5 font-mono px-2.5 py-1 rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700"
-                style={{ color: accentColor }}
+                className="text-xs flex items-center gap-1.5 font-mono px-2.5 py-1 rounded bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-accent"
               >
                 {copiedSnippet === 'boilerplate' ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>Copy TypeScript Starter</span>
@@ -385,10 +382,10 @@ export const MyCustomPlugin: KitStackPlugin = {
       {activeSection === 'registry' && (
         <div className="space-y-6">
           {/* Hot-Plug Interactive Sandbox */}
-          <div className="p-5 rounded-xl border border-indigo-200/80 dark:border-indigo-900/60 bg-indigo-50/20 dark:bg-indigo-950/20 space-y-4">
+          <div className="p-5 rounded-xl border border-accent-subtle bg-accent-subtle space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-indigo-500" />
+                <Sparkles className="w-4 h-4 text-accent" />
                 <h3 className="text-xs font-bold text-neutral-900 dark:text-neutral-100">
                   Interactive Hot-Plugging Sandbox
                 </h3>
@@ -399,7 +396,7 @@ export const MyCustomPlugin: KitStackPlugin = {
             </div>
 
             <p className="text-xs text-neutral-600 dark:text-neutral-400">
-              Test runtime plug-and-play behavior: Type a tool name and category below to register a brand new plugin into the memory registry without restarting the server or touching <code className="font-mono text-indigo-500">App.tsx</code>.
+              Test runtime plug-and-play behavior: Type a tool name and category below to register a brand new plugin into the memory registry without restarting the server or touching <code className="font-mono text-accent">App.tsx</code>.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -412,7 +409,7 @@ export const MyCustomPlugin: KitStackPlugin = {
                   value={customToolName}
                   onChange={(e) => setCustomToolName(e.target.value)}
                   placeholder="e.g. Markdown Previewer"
-                  className="w-full px-3 py-2 text-xs rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-1 focus:ring-accent"
                 />
               </div>
 
@@ -423,7 +420,7 @@ export const MyCustomPlugin: KitStackPlugin = {
                 <select
                   value={customToolCategory}
                   onChange={(e) => setCustomToolCategory(e.target.value as any)}
-                  className="w-full px-3 py-2 text-xs rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                  className="w-full px-3 py-2 text-xs rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-1 focus:ring-accent"
                 >
                   <option value="Utilities">Utilities</option>
                   <option value="Code & Data">Code & Data</option>
@@ -436,8 +433,7 @@ export const MyCustomPlugin: KitStackPlugin = {
                 <button
                   type="button"
                   onClick={handleRegisterLivePlugin}
-                  className="w-full py-2 px-4 rounded-lg text-xs font-semibold text-white shadow-xs flex items-center justify-center gap-1.5 transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: accentColor }}
+                  className="w-full py-2 px-4 rounded-lg text-xs font-semibold shadow-xs flex items-center justify-center gap-1.5 transition-opacity hover:opacity-90 bg-accent"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>Register Tool into Registry</span>
@@ -483,7 +479,7 @@ export const MyCustomPlugin: KitStackPlugin = {
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400">
                       ID: {plugin.manifest.id}
                     </span>
-                    <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 border border-indigo-200/40 dark:border-indigo-900/40">
+                    <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-accent-subtle text-accent border border-accent-subtle">
                       {plugin.manifest.category}
                     </span>
                   </div>
@@ -501,7 +497,7 @@ export const MyCustomPlugin: KitStackPlugin = {
           <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Sliders className="w-4 h-4 text-indigo-500" />
+                <Sliders className="w-4 h-4 text-accent" />
                 <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100">
                   1. Shared ColorPicker
                 </h4>
@@ -523,7 +519,7 @@ export const MyCustomPlugin: KitStackPlugin = {
               <span className="text-neutral-400 font-mono">Current: {demoColor}</span>
               <button
                 onClick={() => handleCopyCode('color', `<ColorPicker value={color} onChange={setColor} />`, 'ColorPicker')}
-                className="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
+                className="text-accent hover:underline flex items-center gap-1"
               >
                 {copiedSnippet === 'color' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>Copy JSX</span>
@@ -589,7 +585,7 @@ export const MyCustomPlugin: KitStackPlugin = {
                     'Toast Snippet'
                   )
                 }
-                className="text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
+                className="text-accent hover:underline flex items-center gap-1"
               >
                 {copiedSnippet === 'notif' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>Copy Snippet</span>

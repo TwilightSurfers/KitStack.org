@@ -21,6 +21,7 @@ import './plugins/core-plugins';
 import { REPOSITORY_TOOLS } from './data/tools';
 import { Plus, Boxes } from 'lucide-react';
 import { useNotifications } from './context/NotificationContext';
+import { applyThemeCssVariables } from './utils/color';
 
 const PluginViewport: React.FC<{
   activeTab?: OpenTab;
@@ -32,10 +33,7 @@ const PluginViewport: React.FC<{
   if (!activeTab) {
     return (
       <div className="py-16 text-center space-y-4 max-w-md mx-auto">
-        <div
-          className="w-12 h-12 rounded-2xl mx-auto flex items-center justify-center text-white shadow-md"
-          style={{ backgroundColor: settings.accentColor }}
-        >
+        <div className="w-12 h-12 rounded-2xl mx-auto flex items-center justify-center shadow-md bg-accent">
           <Boxes className="w-6 h-6" />
         </div>
         <div>
@@ -49,8 +47,7 @@ const PluginViewport: React.FC<{
         <button
           type="button"
           onClick={onOpenCatalog}
-          className="px-4 py-2 rounded-xl text-xs font-semibold text-white inline-flex items-center gap-2 shadow-xs transition-opacity hover:opacity-90"
-          style={{ backgroundColor: settings.accentColor }}
+          className="px-4 py-2 rounded-xl text-xs font-semibold inline-flex items-center gap-2 shadow-xs transition-opacity hover:opacity-90 bg-accent"
         >
           <Plus className="w-4 h-4" />
           <span>Open Tool Catalog</span>
@@ -196,7 +193,7 @@ export default function App() {
     }
   }, [tabs, settings.autoSaveTabs]);
 
-  // Handle Theme Mode (Dark/Light/System)
+  // Handle Theme Mode (Dark/Light/System) and Accent Color Synchronization
   useEffect(() => {
     const root = document.documentElement;
     const applyTheme = (isDark: boolean) => {
@@ -205,6 +202,7 @@ export default function App() {
       } else {
         root.classList.remove('dark');
       }
+      applyThemeCssVariables(settings.accentColor, isDark);
     };
 
     if (settings.theme === 'dark') {
@@ -219,7 +217,7 @@ export default function App() {
       media.addEventListener('change', listener);
       return () => media.removeEventListener('change', listener);
     }
-  }, [settings.theme]);
+  }, [settings.theme, settings.accentColor]);
 
   // Density padding configuration
   const densityContainerClass = useMemo(() => {

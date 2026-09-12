@@ -92,8 +92,7 @@ export const MobileTabSwitcher: React.FC<MobileTabSwitcherProps> = ({
                   onClose();
                   onOpenCatalog();
                 }}
-                className="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-white flex items-center gap-1 shadow-xs"
-                style={{ backgroundColor: accentColor }}
+                className="px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 shadow-xs bg-accent"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>New Tool</span>
@@ -123,15 +122,12 @@ export const MobileTabSwitcher: React.FC<MobileTabSwitcherProps> = ({
                   }}
                   className={`p-3.5 rounded-xl border flex items-center justify-between gap-3 transition-all ${
                     isActive
-                      ? 'border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/30 ring-2 ring-indigo-500/20'
+                      ? 'border-accent bg-accent-subtle ring-2 ring-accent'
                       : 'border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/40'
                   }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center text-white flex-shrink-0"
-                      style={{ backgroundColor: accentColor }}
-                    >
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 bg-accent">
                       <Icon className="w-4 h-4" />
                     </div>
                     <div className="min-w-0">
@@ -140,7 +136,7 @@ export const MobileTabSwitcher: React.FC<MobileTabSwitcherProps> = ({
                           {tab.customTitle || tool.name}
                         </h4>
                         {tab.isPinned && <Pin className="w-3 h-3 text-neutral-400 rotate-45" />}
-                        {isActive && <Check className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />}
+                        {isActive && <Check className="w-3.5 h-3.5 text-accent" />}
                       </div>
                       <p className="text-[11px] text-neutral-500 dark:text-neutral-400 truncate">
                         {tool.tagline}

@@ -70,7 +70,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
         <div className="lg:col-span-6 space-y-4">
           <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-4">
             <h3 className="text-xs font-bold text-neutral-900 dark:text-neutral-100 uppercase tracking-wider flex items-center gap-1.5">
-              <ArrowRightLeft className="w-4 h-4 text-indigo-500" />
+              <ArrowRightLeft className="w-4 h-4 text-accent" />
               <span>Pixel to REM / Percentage Converter</span>
             </h3>
 
@@ -84,9 +84,9 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                     type="number"
                     value={basePx}
                     onChange={(e) => setBasePx(Math.max(1, parseInt(e.target.value, 10) || 16))}
-                    className="w-full px-3 py-2 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 caret-neutral-900 dark:caret-neutral-100"
+                    className="w-full px-3 py-2 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 caret-neutral-900 dark:caret-neutral-100"
                   />
-                  <span className="text-xs font-mono text-neutral-400">px</span>
+                  <span className="text-xs font-mono text-neutral-400 dark:text-neutral-500">px</span>
                 </div>
               </div>
 
@@ -99,9 +99,9 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                     type="number"
                     value={inputPx}
                     onChange={(e) => setInputPx(parseInt(e.target.value, 10) || 0)}
-                    className="w-full px-3 py-2 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 caret-neutral-900 dark:caret-neutral-100"
+                    className="w-full px-3 py-2 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 caret-neutral-900 dark:caret-neutral-100"
                   />
-                  <span className="text-xs font-mono text-neutral-400">px</span>
+                  <span className="text-xs font-mono text-neutral-400 dark:text-neutral-500">px</span>
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                 }}
                 className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer transition-colors text-center"
               >
-                <span className="text-[10px] text-neutral-400 font-mono block">REM</span>
+                <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono block">REM</span>
                 <span className="text-sm font-bold text-neutral-900 dark:text-neutral-100 font-mono">
                   {remValue}rem
                 </span>
@@ -128,7 +128,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                 }}
                 className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer transition-colors text-center"
               >
-                <span className="text-[10px] text-neutral-400 font-mono block">Points</span>
+                <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono block">Points</span>
                 <span className="text-sm font-bold text-neutral-900 dark:text-neutral-100 font-mono">
                   {ptValue}pt
                 </span>
@@ -141,7 +141,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
                 }}
                 className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer transition-colors text-center"
               >
-                <span className="text-[10px] text-neutral-400 font-mono block">Percent</span>
+                <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono block">Percent</span>
                 <span className="text-sm font-bold text-neutral-900 dark:text-neutral-100 font-mono">
                   {percentValue}%
                 </span>
@@ -160,39 +160,39 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ accentColo
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-[11px] text-neutral-500 mb-1">Min Screen Viewport</label>
+                <label className="block text-[11px] text-neutral-600 dark:text-neutral-400 mb-1">Min Screen Viewport</label>
                 <input
                   type="number"
                   value={minViewport}
                   onChange={(e) => setMinViewport(parseInt(e.target.value, 10) || 320)}
-                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                 />
               </div>
               <div>
-                <label className="block text-[11px] text-neutral-500 mb-1">Max Screen Viewport</label>
+                <label className="block text-[11px] text-neutral-600 dark:text-neutral-400 mb-1">Max Screen Viewport</label>
                 <input
                   type="number"
                   value={maxViewport}
                   onChange={(e) => setMaxViewport(parseInt(e.target.value, 10) || 1280)}
-                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                 />
               </div>
               <div>
-                <label className="block text-[11px] text-neutral-500 mb-1">Min Font/Size (px)</label>
+                <label className="block text-[11px] text-neutral-600 dark:text-neutral-400 mb-1">Min Font/Size (px)</label>
                 <input
                   type="number"
                   value={minSizePx}
                   onChange={(e) => setMinSizePx(parseInt(e.target.value, 10) || 14)}
-                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                 />
               </div>
               <div>
-                <label className="block text-[11px] text-neutral-500 mb-1">Max Font/Size (px)</label>
+                <label className="block text-[11px] text-neutral-600 dark:text-neutral-400 mb-1">Max Font/Size (px)</label>
                 <input
                   type="number"
                   value={maxSizePx}
                   onChange={(e) => setMaxSizePx(parseInt(e.target.value, 10) || 36)}
-                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400"
+                  className="w-full px-2.5 py-1.5 text-xs font-mono rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                 />
               </div>
             </div>

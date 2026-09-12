@@ -50,8 +50,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ onOpenLegal, accentColor
               href="https://x.com/TwilightSurfers"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium transition-opacity hover:opacity-80"
-              style={{ color: accentColor }}
+              className="font-medium transition-opacity hover:opacity-80 text-accent"
             >
               Twilight Surfers Development
             </a>

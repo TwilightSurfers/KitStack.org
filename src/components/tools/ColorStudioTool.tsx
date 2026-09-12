@@ -103,7 +103,7 @@ export const ColorStudioTool: React.FC<ColorStudioToolProps> = ({ accentColor })
                 className={`px-2 py-1 text-[11px] font-mono font-medium rounded-md uppercase transition-colors ${
                   colorFormat === fmt
                     ? 'bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 shadow-2xs font-semibold'
-                    : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200'
+                    : 'text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200'
                 }`}
               >
                 {fmt}
@@ -122,7 +122,7 @@ export const ColorStudioTool: React.FC<ColorStudioToolProps> = ({ accentColor })
               Shared ColorPicker Component
             </span>
             <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-3">
-              This component is imported directly from <code className="font-mono text-indigo-500">@kitstack/shared</code> and reusable by any tool tab.
+              This component is imported directly from <code className="font-mono text-accent">@kitstack/shared</code> and reusable by any tool tab.
             </p>
             <ColorPicker
               value={baseColor}
@@ -231,8 +231,7 @@ export const ColorStudioTool: React.FC<ColorStudioToolProps> = ({ accentColor })
               <button
                 type="button"
                 onClick={handleCopyCode}
-                className="text-xs flex items-center gap-1 font-mono hover:opacity-80"
-                style={{ color: accentColor }}
+                className="text-xs flex items-center gap-1 font-mono hover:opacity-80 text-accent"
               >
                 {copiedCode ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copiedCode ? 'Copied' : 'Copy'}</span>

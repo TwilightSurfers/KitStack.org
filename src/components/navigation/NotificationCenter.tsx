@@ -30,7 +30,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, 
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold text-neutral-900 dark:text-neutral-100">Notifications</span>
             {unreadCount > 0 && (
-              <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500 text-white">
+              <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-accent">
                 {unreadCount} new
               </span>
             )}
@@ -40,7 +40,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, 
             {unreadCount > 0 && (
               <button
                 onClick={markAllAsRead}
-                className="text-[11px] font-medium text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 flex items-center gap-1"
+                className="text-[11px] font-medium text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 flex items-center gap-1"
                 title="Mark all as read"
               >
                 <Check className="w-3 h-3" />
@@ -50,7 +50,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, 
             {notifications.length > 0 && (
               <button
                 onClick={clearAll}
-                className="text-[11px] font-medium text-neutral-400 hover:text-rose-500 flex items-center gap-1"
+                className="text-[11px] font-medium text-neutral-400 hover:text-rose-500 dark:hover:text-rose-400 flex items-center gap-1"
                 title="Clear all notifications"
               >
                 <Trash2 className="w-3 h-3" />
@@ -63,10 +63,10 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, 
         {/* List */}
         <div className="max-h-80 overflow-y-auto divide-y divide-neutral-100 dark:divide-neutral-800/60">
           {notifications.length === 0 ? (
-            <div className="py-8 px-4 text-center text-neutral-400">
+            <div className="py-8 px-4 text-center text-neutral-400 dark:text-neutral-500">
               <BellOff className="w-7 h-7 mx-auto mb-2 opacity-50" />
-              <p className="text-xs font-medium">No recent notifications</p>
-              <p className="text-[11px] text-neutral-500 mt-0.5">Tool activities will show here</p>
+              <p className="text-xs font-medium text-neutral-600 dark:text-neutral-400">No recent notifications</p>
+              <p className="text-[11px] text-neutral-400 dark:text-neutral-500 mt-0.5">Tool activities will show here</p>
             </div>
           ) : (
             notifications.map((item) => {
@@ -79,7 +79,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, 
                 <div
                   key={item.id}
                   className={`p-3.5 flex items-start gap-3 transition-colors ${
-                    !item.read ? 'bg-indigo-50/20 dark:bg-indigo-950/20' : 'hover:bg-neutral-50 dark:hover:bg-neutral-800/40'
+                    !item.read ? 'bg-accent-subtle' : 'hover:bg-neutral-50 dark:hover:bg-neutral-800/40'
                   }`}
                 >
                   <div className="mt-0.5 flex-shrink-0">
@@ -100,7 +100,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, 
                       {item.message}
                     </p>
                     {item.toolSource && (
-                      <span className="inline-block mt-1 text-[9px] font-mono px-1.5 py-0.2 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-500">
+                      <span className="inline-block mt-1 text-[9px] font-mono px-1.5 py-0.2 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300">
                         {item.toolSource}
                       </span>
                     )}
@@ -108,7 +108,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, 
 
                   <button
                     onClick={() => removeNotification(item.id)}
-                    className="p-1 text-neutral-300 hover:text-neutral-500 dark:hover:text-neutral-300 transition-colors"
+                    className="p-1 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 transition-colors"
                   >
                     <span className="sr-only">Remove</span>
                     <span className="text-xs">×</span>

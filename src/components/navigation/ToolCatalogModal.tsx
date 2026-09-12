@@ -86,10 +86,7 @@ export const ToolCatalogModal: React.FC<ToolCatalogModalProps> = ({
           <div className="p-5 border-b border-neutral-200 dark:border-neutral-800">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
-                <div
-                  className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-xs font-bold"
-                  style={{ backgroundColor: accentColor }}
-                >
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold bg-accent">
                   KS
                 </div>
                 <div>
@@ -119,7 +116,7 @@ export const ToolCatalogModal: React.FC<ToolCatalogModalProps> = ({
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search repository tools by name, utility, or keyword..."
-                  className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent"
                   autoFocus
                 />
               </div>
@@ -156,15 +153,12 @@ export const ToolCatalogModal: React.FC<ToolCatalogModalProps> = ({
                   <div>
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div className="flex items-center gap-2.5">
-                        <div
-                          className="w-9 h-9 rounded-xl flex items-center justify-center text-white shadow-xs"
-                          style={{ backgroundColor: accentColor }}
-                        >
+                        <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-xs bg-accent">
                           <Icon className="w-4 h-4" />
                         </div>
                         <div>
                           <div className="flex items-center gap-1.5">
-                            <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                            <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-accent transition-colors">
                               {tool.name}
                             </h4>
                             <span className="text-[10px] font-mono text-neutral-400">{tool.version}</span>
@@ -200,8 +194,7 @@ export const ToolCatalogModal: React.FC<ToolCatalogModalProps> = ({
                         onSelectTool(tool.id);
                         onClose();
                       }}
-                      className="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition-all shadow-xs text-white"
-                      style={{ backgroundColor: accentColor }}
+                      className="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1 transition-all shadow-xs bg-accent"
                     >
                       {isOpenAlready ? (
                         <>

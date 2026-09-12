@@ -158,3 +158,35 @@ export function generateTonalPalette(baseHex: string): { label: string; hex: str
     return { label: stop.label, hex, contrast };
   });
 }
+
+export function applyThemeCssVariables(accentHex: string, isDark: boolean): void {
+  if (typeof document === 'undefined') return;
+  const root = document.documentElement;
+  const rgb = hexToRgb(accentHex);
+  const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+
+  // Compute hover and active shades
+  const hoverL = isDark ? Math.min(95, hsl.l + 7) : Math.max(5, hsl.l - 7);
+  const activeL = isDark ? Math.min(95, hsl.l + 14) : Math.max(5, hsl.l - 14);
+  const hoverRgb = hslToRgb(hsl.h, hsl.s, hoverL);
+  const activeRgb = hslToRgb(hsl.h, hsl.s, activeL);
+
+  const hoverHex = rgbToHex(hoverRgb.r, hoverRgb.g, hoverRgb.b);
+  const activeHex = rgbToHex(activeRgb.r, activeRgb.g, activeRgb.b);
+
+  // Accessible text contrast color
+  const lum = getLuminance(rgb.r, rgb.g, rgb.b);
+  const contrastText = lum > 0.4 ? '#0a0a0a' : '#ffffff';
+
+  const subtleRgba = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${isDark ? 0.2 : 0.12})`;
+  const borderRgba = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${isDark ? 0.45 : 0.35})`;
+  const ringRgba = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.45)`;
+
+  root.style.setProperty('--theme-accent', accentHex);
+  root.style.setProperty('--theme-accent-hover', hoverHex);
+  root.style.setProperty('--theme-accent-active', activeHex);
+  root.style.setProperty('--theme-accent-contrast', contrastText);
+  root.style.setProperty('--theme-accent-subtle', subtleRgba);
+  root.style.setProperty('--theme-accent-border', borderRgba);
+  root.style.setProperty('--theme-accent-ring', ringRgba);
+}

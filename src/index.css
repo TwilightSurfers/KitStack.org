@@ -2,6 +2,25 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --color-accent: var(--theme-accent);
+  --color-accent-hover: var(--theme-accent-hover);
+  --color-accent-active: var(--theme-accent-active);
+  --color-accent-subtle: var(--theme-accent-subtle);
+  --color-accent-border: var(--theme-accent-border);
+  --color-accent-ring: var(--theme-accent-ring);
+}
+
+:root {
+  --theme-accent: #4F46E5;
+  --theme-accent-hover: #4338ca;
+  --theme-accent-active: #3730a3;
+  --theme-accent-contrast: #ffffff;
+  --theme-accent-subtle: rgba(79, 70, 229, 0.14);
+  --theme-accent-border: rgba(79, 70, 229, 0.38);
+  --theme-accent-ring: rgba(79, 70, 229, 0.45);
+}
+
 @layer base {
   * {
     box-sizing: border-box;
@@ -23,9 +42,77 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Selection highlight styled with dynamic theme accent */
+  ::selection {
+    background-color: var(--theme-accent);
+    color: var(--theme-accent-contrast);
+  }
+
+  /* Default native input, select, textarea styling */
+  input[type="text"],
+  input[type="number"],
+  input[type="search"],
+  input[type="color"],
+  textarea,
+  select {
+    font-family: inherit;
+    color-scheme: light dark;
+  }
+
+  /* Theme-compliant range slider accent */
+  input[type="range"] {
+    accent-color: var(--theme-accent);
+  }
+
+  /* Focus visible accessibility outline */
+  :focus-visible {
+    outline-color: var(--theme-accent);
+  }
 }
 
-/* Custom modern scrollbar */
+/* Dynamic theme accent utility classes */
+.bg-accent {
+  background-color: var(--theme-accent) !important;
+  color: var(--theme-accent-contrast) !important;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.bg-accent:hover {
+  background-color: var(--theme-accent-hover) !important;
+}
+
+.bg-accent:active {
+  background-color: var(--theme-accent-active) !important;
+}
+
+.bg-accent-subtle {
+  background-color: var(--theme-accent-subtle) !important;
+}
+
+.text-accent {
+  color: var(--theme-accent) !important;
+}
+
+.border-accent {
+  border-color: var(--theme-accent) !important;
+}
+
+.border-accent-subtle {
+  border-color: var(--theme-accent-border) !important;
+}
+
+.ring-accent,
+.focus\:ring-accent:focus,
+.focus\:ring-accent:focus-visible {
+  --tw-ring-color: var(--theme-accent-ring) !important;
+}
+
+.accent-theme {
+  accent-color: var(--theme-accent) !important;
+}
+
+/* Custom modern scrollbar with Light/Dark compliance */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -35,12 +122,20 @@
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.3);
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
   border-radius: 9999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.5);
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.32);
 }
 
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 9999px;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.32);
+}

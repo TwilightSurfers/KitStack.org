@@ -22,17 +22,17 @@ export const DesignerBadge: React.FC = () => {
       data-hint={HINT}
       title={HINT}
       aria-label={HINT}
-      className="fixed right-4 bottom-24 z-40 inline-flex items-center gap-2.5 rounded-full px-3 py-2 transition-all duration-200 group bg-[rgba(11,15,25,0.84)] backdrop-blur-[12px] border border-[rgba(168,85,247,0.4)] shadow-[0_0_20px_rgba(168,85,247,0.25),0_4px_16px_rgba(0,0,0,0.35)] hover:border-[rgba(192,132,252,0.7)] hover:shadow-[0_0_28px_rgba(168,85,247,0.45),0_4px_20px_rgba(0,0,0,0.4)]"
+      className="fixed right-4 bottom-24 z-40 inline-flex items-center gap-2.5 rounded-full px-3 py-2 transition-all duration-200 group bg-[rgba(11,15,25,0.84)] backdrop-blur-[12px] border border-accent-subtle shadow-[0_0_20px_var(--theme-accent-ring),0_4px_16px_rgba(0,0,0,0.35)] hover:border-accent hover:shadow-[0_0_28px_var(--theme-accent-ring),0_4px_20px_rgba(0,0,0,0.4)]"
     >
       <img
         src="https://unavatar.io/x/TwilightSurfers"
         alt="@TwilightSurfers"
         width={34}
         height={34}
-        className="rounded-full flex-shrink-0 object-cover w-[34px] h-[34px] border-2 border-[#c084fc]"
+        className="rounded-full flex-shrink-0 object-cover w-[34px] h-[34px] border-2 border-accent"
       />
       <span className="flex flex-col leading-tight min-w-0">
-        <span className="text-[9px] font-semibold tracking-wider uppercase text-[rgba(196,181,253,0.75)]">
+        <span className="text-[9px] font-semibold tracking-wider uppercase text-accent opacity-85">
           Designed by
         </span>
         <span className="text-xs font-semibold text-white inline-flex items-center gap-1">

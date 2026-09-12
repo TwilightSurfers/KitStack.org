@@ -16,17 +16,34 @@
         try {
           var raw = localStorage.getItem('kitstack_settings');
           var theme = 'dark';
+          var accent = '#4F46E5';
           if (raw) {
             var parsed = JSON.parse(raw);
-            if (parsed && parsed.theme) {
-              theme = parsed.theme;
-            }
+            if (parsed && parsed.theme) theme = parsed.theme;
+            if (parsed && parsed.accentColor) accent = parsed.accentColor;
           }
           var isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var root = document.documentElement;
           if (isDark) {
-            document.documentElement.classList.add('dark');
+            root.classList.add('dark');
           } else {
-            document.documentElement.classList.remove('dark');
+            root.classList.remove('dark');
+          }
+
+          // Parse RGB for synchronous CSS variable setting
+          var clean = accent.replace('#', '');
+          if (clean.length === 3) clean = clean.split('').map(function(c) { return c + c; }).join('');
+          var num = parseInt(clean, 16);
+          if (!isNaN(num)) {
+            var r = (num >> 16) & 255;
+            var g = (num >> 8) & 255;
+            var b = num & 255;
+            var lum = (r * 0.2126 + g * 0.7152 + b * 0.0722) / 255;
+            root.style.setProperty('--theme-accent', accent);
+            root.style.setProperty('--theme-accent-contrast', lum > 0.45 ? '#0a0a0a' : '#ffffff');
+            root.style.setProperty('--theme-accent-subtle', 'rgba(' + r + ',' + g + ',' + b + ',' + (isDark ? 0.2 : 0.12) + ')');
+            root.style.setProperty('--theme-accent-border', 'rgba(' + r + ',' + g + ',' + b + ',' + (isDark ? 0.45 : 0.35) + ')');
+            root.style.setProperty('--theme-accent-ring', 'rgba(' + r + ',' + g + ',' + b + ',0.45)');
           }
         } catch (e) {}
       })();

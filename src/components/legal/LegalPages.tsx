@@ -41,10 +41,7 @@ export const LegalPages: React.FC<LegalPagesProps> = ({ view, onBack, accentColo
 
       <article className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-xs overflow-hidden">
         <header className="px-5 py-4 border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2.5">
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0"
-            style={{ backgroundColor: accentColor }}
-          >
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 bg-accent">
             {ICONS[view]}
           </div>
           <div>
@@ -123,8 +120,7 @@ const ContactBody: React.FC<{ accentColor: string }> = ({ accentColor }) => (
       href="https://x.com/TwilightSurfers"
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-white shadow-xs transition-opacity hover:opacity-90"
-      style={{ backgroundColor: accentColor }}
+      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold shadow-xs transition-opacity hover:opacity-90 bg-accent"
     >
       <span>@TwilightSurfers on X</span>
       <ExternalLink className="w-3.5 h-3.5 opacity-80" aria-hidden />

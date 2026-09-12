@@ -94,7 +94,7 @@ export const ShadowGlowTool: React.FC<ShadowGlowToolProps> = ({ accentColor }) =
                 max="60"
                 value={xOffset}
                 onChange={(e) => setXOffset(parseInt(e.target.value, 10))}
-                className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-theme"
               />
             </div>
 
@@ -109,7 +109,7 @@ export const ShadowGlowTool: React.FC<ShadowGlowToolProps> = ({ accentColor }) =
                 max="80"
                 value={yOffset}
                 onChange={(e) => setYOffset(parseInt(e.target.value, 10))}
-                className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-theme"
               />
             </div>
 
@@ -124,7 +124,7 @@ export const ShadowGlowTool: React.FC<ShadowGlowToolProps> = ({ accentColor }) =
                 max="100"
                 value={blur}
                 onChange={(e) => setBlur(parseInt(e.target.value, 10))}
-                className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-theme"
               />
             </div>
 
@@ -139,7 +139,7 @@ export const ShadowGlowTool: React.FC<ShadowGlowToolProps> = ({ accentColor }) =
                 max="40"
                 value={spread}
                 onChange={(e) => setSpread(parseInt(e.target.value, 10))}
-                className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-theme"
               />
             </div>
 
@@ -152,8 +152,8 @@ export const ShadowGlowTool: React.FC<ShadowGlowToolProps> = ({ accentColor }) =
                 onClick={() => setIsInset(!isInset)}
                 className={`px-3 py-1 rounded-lg text-xs font-semibold border transition-all ${
                   isInset
-                    ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400'
-                    : 'border-neutral-300 dark:border-neutral-700 text-neutral-500'
+                    ? 'border-accent bg-accent-subtle text-accent'
+                    : 'border-neutral-300 dark:border-neutral-700 text-neutral-500 dark:text-neutral-400'
                 }`}
               >
                 {isInset ? 'Inset Active' : 'Outset'}
@@ -220,8 +220,7 @@ export const ShadowGlowTool: React.FC<ShadowGlowToolProps> = ({ accentColor }) =
               <button
                 type="button"
                 onClick={handleCopy}
-                className="text-xs flex items-center gap-1 font-mono hover:opacity-80"
-                style={{ color: accentColor }}
+                className="text-xs flex items-center gap-1 font-mono hover:opacity-80 text-accent"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copied ? 'Copied' : 'Copy CSS'}</span>

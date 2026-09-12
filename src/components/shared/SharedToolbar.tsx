@@ -53,8 +53,7 @@ export const SharedToolbar: React.FC<SharedToolbarProps> = ({
           <button
             type="button"
             onClick={onExport}
-            className="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-white flex items-center gap-1.5 shadow-xs transition-opacity hover:opacity-90"
-            style={{ backgroundColor: accentColor || '#4F46E5' }}
+            className="px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 shadow-xs transition-opacity hover:opacity-90 bg-accent"
           >
             <Download className="w-3.5 h-3.5" />
             <span>{exportLabel}</span>

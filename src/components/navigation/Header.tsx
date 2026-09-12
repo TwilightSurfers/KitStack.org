@@ -37,22 +37,19 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Brand & Identity */}
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
-          <div
-            className="w-8 h-8 rounded-xl flex items-center justify-center text-white shadow-xs"
-            style={{ backgroundColor: settings.accentColor }}
-          >
+          <div className="w-8 h-8 rounded-xl flex items-center justify-center shadow-xs bg-accent">
             <Layers className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-1.5">
               <span className="font-bold text-sm tracking-tight text-neutral-900 dark:text-neutral-50">
-                KitStack<span style={{ color: settings.accentColor }}>.org</span>
+                KitStack<span className="text-accent">.org</span>
               </span>
               <span className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 border border-neutral-200/60 dark:border-neutral-700/60">
                 Tool Repository
               </span>
             </div>
-            <span className="text-[10px] text-neutral-400 hidden sm:block">
+            <span className="text-[10px] text-neutral-400 dark:text-neutral-500 hidden sm:block">
               Unified components & multi-tab workspace
             </span>
           </div>
@@ -69,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({
             <Search className="w-3.5 h-3.5" />
             <span>Search or add tools...</span>
           </div>
-          <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 text-neutral-500">
+          <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 text-neutral-500 dark:text-neutral-300">
             Catalog
           </kbd>
         </button>
@@ -108,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Bell className="w-4 h-4" />
             {unreadCount > 0 && (
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-indigo-500 ring-2 ring-white dark:ring-neutral-900 animate-pulse" />
+              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-accent ring-2 ring-white dark:ring-neutral-900 animate-pulse" />
             )}
           </button>
 
@@ -121,7 +118,7 @@ export const Header: React.FC<HeaderProps> = ({
           className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-neutral-200 dark:border-neutral-700/80 bg-neutral-50/50 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-200 text-xs font-semibold transition-all shadow-2xs"
           title="Configure Color Preferences and Notifications"
         >
-          <Settings className="w-4 h-4 text-neutral-500" />
+          <Settings className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
           <span className="hidden sm:inline">Settings</span>
         </button>
       </div>

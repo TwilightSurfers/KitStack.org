@@ -145,7 +145,7 @@ export const JsonFormatTool: React.FC<JsonFormatToolProps> = ({ accentColor }) =
               onClick={handleFormat}
               className="px-2.5 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-xs font-semibold text-neutral-700 dark:text-neutral-200 flex items-center gap-1"
             >
-              <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
+              <Sparkles className="w-3.5 h-3.5 text-accent" />
               <span>Prettify</span>
             </button>
             <button
@@ -207,7 +207,7 @@ export const JsonFormatTool: React.FC<JsonFormatToolProps> = ({ accentColor }) =
               setError(err instanceof Error ? err.message : 'Invalid JSON');
             }
           }}
-          className="w-full h-96 p-4 font-mono text-xs bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 caret-neutral-900 dark:caret-neutral-100 placeholder:text-neutral-400 border-none outline-none resize-y focus:ring-0 leading-relaxed"
+          className="w-full h-96 p-4 font-mono text-xs bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 caret-neutral-900 dark:caret-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 border-none outline-none resize-y focus:ring-0 leading-relaxed"
           placeholder="Paste or write raw JSON here..."
           spellCheck={false}
         />

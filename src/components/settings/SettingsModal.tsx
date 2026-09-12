@@ -125,10 +125,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 dark:border-neutral-800">
             <div className="flex items-center gap-2.5">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-white"
-                style={{ backgroundColor: settings.accentColor }}
-              >
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-accent">
                 <Sliders className="w-4 h-4" />
               </div>
               <div>
@@ -155,13 +152,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               onClick={() => setActiveTab('colors')}
               className={`flex items-center gap-2 py-3 px-3 text-xs font-semibold border-b-2 transition-colors ${
                 activeTab === 'colors'
-                  ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400'
+                  ? 'border-accent text-accent'
                   : 'border-transparent text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'
               }`}
-              style={{
-                borderColor: activeTab === 'colors' ? settings.accentColor : 'transparent',
-                color: activeTab === 'colors' ? settings.accentColor : undefined,
-              }}
             >
               <Palette className="w-4 h-4" />
               <span>Color & Appearance</span>
@@ -171,13 +164,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               onClick={() => setActiveTab('notifications')}
               className={`flex items-center gap-2 py-3 px-3 text-xs font-semibold border-b-2 transition-colors ${
                 activeTab === 'notifications'
-                  ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400'
+                  ? 'border-accent text-accent'
                   : 'border-transparent text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'
               }`}
-              style={{
-                borderColor: activeTab === 'notifications' ? settings.accentColor : 'transparent',
-                color: activeTab === 'notifications' ? settings.accentColor : undefined,
-              }}
             >
               <Bell className="w-4 h-4" />
               <span>Notifications & Sound</span>
@@ -187,13 +176,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               onClick={() => setActiveTab('workspace')}
               className={`flex items-center gap-2 py-3 px-3 text-xs font-semibold border-b-2 transition-colors ${
                 activeTab === 'workspace'
-                  ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400'
+                  ? 'border-accent text-accent'
                   : 'border-transparent text-neutral-500 hover:text-neutral-700 dark:text-neutral-400'
               }`}
-              style={{
-                borderColor: activeTab === 'workspace' ? settings.accentColor : 'transparent',
-                color: activeTab === 'workspace' ? settings.accentColor : undefined,
-              }}
             >
               <Sparkles className="w-4 h-4" />
               <span>Tabs & Workspace</span>
@@ -215,13 +200,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                       onClick={() => handleThemeChange('dark')}
                       className={`flex flex-col items-center justify-center p-3.5 rounded-xl border transition-all ${
                         settings.theme === 'dark'
-                          ? 'border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/30 text-neutral-900 dark:text-neutral-100 ring-2 ring-indigo-500/20'
+                          ? 'border-accent bg-accent-subtle text-neutral-900 dark:text-neutral-100 ring-2 ring-accent'
                           : 'border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400'
                       }`}
                     >
                       <Moon className="w-5 h-5 mb-1.5" />
                       <span className="text-xs font-medium">Dark Mode</span>
-                      <span className="text-[10px] text-neutral-400 mt-0.5">Recommended</span>
+                      <span className="text-[10px] text-neutral-400 dark:text-neutral-500 mt-0.5">Recommended</span>
                     </button>
 
                     <button
@@ -229,13 +214,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                       onClick={() => handleThemeChange('light')}
                       className={`flex flex-col items-center justify-center p-3.5 rounded-xl border transition-all ${
                         settings.theme === 'light'
-                          ? 'border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/30 text-neutral-900 dark:text-neutral-100 ring-2 ring-indigo-500/20'
+                          ? 'border-accent bg-accent-subtle text-neutral-900 dark:text-neutral-100 ring-2 ring-accent'
                           : 'border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400'
                       }`}
                     >
                       <Sun className="w-5 h-5 mb-1.5" />
                       <span className="text-xs font-medium">Light Mode</span>
-                      <span className="text-[10px] text-neutral-400 mt-0.5">High Brightness</span>
+                      <span className="text-[10px] text-neutral-400 dark:text-neutral-500 mt-0.5">High Brightness</span>
                     </button>
 
                     <button
@@ -243,13 +228,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                       onClick={() => handleThemeChange('system')}
                       className={`flex flex-col items-center justify-center p-3.5 rounded-xl border transition-all ${
                         settings.theme === 'system'
-                          ? 'border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/30 text-neutral-900 dark:text-neutral-100 ring-2 ring-indigo-500/20'
+                          ? 'border-accent bg-accent-subtle text-neutral-900 dark:text-neutral-100 ring-2 ring-accent'
                           : 'border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400'
                       }`}
                     >
                       <Monitor className="w-5 h-5 mb-1.5" />
                       <span className="text-xs font-medium">System Auto</span>
-                      <span className="text-[10px] text-neutral-400 mt-0.5">Match OS</span>
+                      <span className="text-[10px] text-neutral-400 dark:text-neutral-500 mt-0.5">Match OS</span>
                     </button>
                   </div>
                 </div>
@@ -263,7 +248,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setShowCustomColorPicker(!showCustomColorPicker)}
-                      className="text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1"
+                      className="text-xs font-medium text-accent hover:underline flex items-center gap-1"
                     >
                       {showCustomColorPicker ? 'Use Preset Grid' : 'Open Custom Color Picker'}
                     </button>
@@ -280,7 +265,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                             onClick={() => handleAccentChange(preset.value)}
                             className={`flex items-center gap-2.5 p-2.5 rounded-xl border transition-all text-left ${
                               isSelected
-                                ? 'border-neutral-900 dark:border-white ring-2 ring-indigo-500/30 bg-neutral-50 dark:bg-neutral-800'
+                                ? 'border-neutral-900 dark:border-white ring-2 ring-accent bg-neutral-50 dark:bg-neutral-800'
                                 : 'border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800/50'
                             }`}
                           >
@@ -331,7 +316,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                         onClick={() => handleTabStyleChange(style.id as TabStyle)}
                         className={`p-3 rounded-xl border text-left transition-all ${
                           settings.tabStyle === style.id
-                            ? 'border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/30 ring-2 ring-indigo-500/20'
+                            ? 'border-accent bg-accent-subtle ring-2 ring-accent'
                             : 'border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800/50'
                         }`}
                       >
@@ -359,7 +344,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                         onClick={() => handleDensityChange(d)}
                         className={`flex-1 py-2 px-3 rounded-lg border text-xs font-medium capitalize transition-all ${
                           settings.density === d
-                            ? 'border-indigo-500 bg-indigo-50/30 dark:bg-indigo-950/40 text-neutral-900 dark:text-neutral-100 font-semibold'
+                            ? 'border-accent bg-accent-subtle text-neutral-900 dark:text-neutral-100 font-semibold'
                             : 'border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800/50'
                         }`}
                       >
@@ -387,7 +372,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     type="button"
                     onClick={() => handleNotificationToggle('enabled', !settings.notifications.enabled)}
                     className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
-                      settings.notifications.enabled ? 'bg-indigo-600' : 'bg-neutral-300 dark:bg-neutral-700'
+                      settings.notifications.enabled ? 'bg-accent' : 'bg-neutral-300 dark:bg-neutral-700'
                     }`}
                   >
                     <div
@@ -428,7 +413,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                       type="button"
                       onClick={() => handleNotificationToggle('sound', !settings.notifications.sound)}
                       className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
-                        settings.notifications.sound ? 'bg-indigo-600' : 'bg-neutral-300 dark:bg-neutral-700'
+                        settings.notifications.sound ? 'bg-accent' : 'bg-neutral-300 dark:bg-neutral-700'
                       }`}
                     >
                       <div
@@ -454,7 +439,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     type="button"
                     onClick={() => handleNotificationToggle('toolAlerts', !settings.notifications.toolAlerts)}
                     className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
-                      settings.notifications.toolAlerts ? 'bg-indigo-600' : 'bg-neutral-300 dark:bg-neutral-700'
+                      settings.notifications.toolAlerts ? 'bg-accent' : 'bg-neutral-300 dark:bg-neutral-700'
                     }`}
                   >
                     <div
@@ -482,7 +467,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     step="1"
                     value={settings.notifications.autoDismissSeconds}
                     onChange={(e) => handleNotificationToggle('autoDismissSeconds', parseInt(e.target.value, 10))}
-                    className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                    className="w-full h-2 bg-neutral-200 dark:bg-neutral-700 rounded-lg appearance-none cursor-pointer accent-theme"
                   />
                   <div className="flex justify-between text-[10px] text-neutral-400 mt-1">
                     <span>2s (Quick)</span>
@@ -498,7 +483,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     onClick={handleTestNotification}
                     className="w-full py-2.5 px-4 rounded-xl border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-xs font-semibold text-neutral-800 dark:text-neutral-200 flex items-center justify-center gap-2 transition-colors"
                   >
-                    <Bell className="w-4 h-4 text-indigo-500" />
+                    <Bell className="w-4 h-4 text-accent" />
                     <span>Send Test Notification Banner</span>
                   </button>
                 </div>
@@ -520,7 +505,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     type="button"
                     onClick={() => onUpdateSettings({ ...settings, autoSaveTabs: !settings.autoSaveTabs })}
                     className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
-                      settings.autoSaveTabs ? 'bg-indigo-600' : 'bg-neutral-300 dark:bg-neutral-700'
+                      settings.autoSaveTabs ? 'bg-accent' : 'bg-neutral-300 dark:bg-neutral-700'
                     }`}
                   >
                     <div
@@ -564,8 +549,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-xs font-semibold text-white transition-opacity hover:opacity-90 shadow-xs"
-              style={{ backgroundColor: settings.accentColor }}
+              className="px-4 py-2 rounded-xl text-xs font-semibold transition-opacity hover:opacity-90 shadow-xs bg-accent"
             >
               Done
             </button>
