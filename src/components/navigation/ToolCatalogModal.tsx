@@ -11,7 +11,8 @@ import {
   Plus,
   ArrowRight,
   Sparkles,
-  ExternalLink
+  ExternalLink,
+  FileText
 } from 'lucide-react';
 import { REPOSITORY_TOOLS } from '../../data/tools';
 import { ToolDefinition } from '../../types';
@@ -36,6 +37,8 @@ const getToolIcon = (iconName: string) => {
       return Ruler;
     case 'Boxes':
       return Boxes;
+    case 'FileText':
+      return FileText;
     default:
       return Sparkles;
   }

@@ -14,7 +14,8 @@ import {
   Boxes,
   Sparkles,
   Copy,
-  LayoutGrid
+  LayoutGrid,
+  FileText
 } from 'lucide-react';
 import { OpenTab, TabStyle, ToolDefinition } from '../../types';
 import { REPOSITORY_TOOLS } from '../../data/tools';
@@ -58,6 +59,8 @@ const getToolIcon = (iconName: string) => {
       return Ruler;
     case 'Boxes':
       return Boxes;
+    case 'FileText':
+      return FileText;
     default:
       return Sparkles;
   }
@@ -97,34 +100,46 @@ export const TabBar: React.FC<TabBarProps> = ({
       cancelAnimationFrame(animationFrameRef.current);
       animationFrameRef.current = null;
     }
-  }, []);
+    updateScrollState();
+  }, [updateScrollState]);
 
   // Continuous auto-scroll exclusively while hovering on chevrons
   const startAutoScroll = useCallback(
     (direction: 'left' | 'right') => {
       stopAutoScroll();
-      // Silky glide speed (5px per animation frame)
-      const speed = direction === 'left' ? -5.5 : 5.5;
+      const el = scrollContainerRef.current;
+      if (!el) return;
+
+      // Silky glide speed in pixels per animation frame (~360px-450px/sec)
+      const stepPixels = direction === 'left' ? -6 : 6;
 
       const step = () => {
-        const el = scrollContainerRef.current;
-        if (el) {
-          const prev = el.scrollLeft;
-          el.scrollLeft += speed;
-          // Stop if reached the boundary
-          if (el.scrollLeft === prev) {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+
+        const { scrollLeft, scrollWidth, clientWidth } = container;
+        const maxScroll = Math.max(0, scrollWidth - clientWidth);
+
+        if (direction === 'left') {
+          if (scrollLeft <= 0) {
             stopAutoScroll();
-            updateScrollState();
             return;
           }
-          updateScrollState();
+          container.scrollLeft = Math.max(0, scrollLeft + stepPixels);
+        } else {
+          if (scrollLeft >= maxScroll - 1) {
+            stopAutoScroll();
+            return;
+          }
+          container.scrollLeft = Math.min(maxScroll, scrollLeft + stepPixels);
         }
+
         animationFrameRef.current = requestAnimationFrame(step);
       };
 
       animationFrameRef.current = requestAnimationFrame(step);
     },
-    [stopAutoScroll, updateScrollState]
+    [stopAutoScroll]
   );
 
   // Single step scroll on click for accessibility
@@ -180,7 +195,11 @@ export const TabBar: React.FC<TabBarProps> = ({
             onMouseEnter={() => {
               if (canScrollLeft) startAutoScroll('left');
             }}
+            onMouseMove={() => {
+              if (!animationFrameRef.current && canScrollLeft) startAutoScroll('left');
+            }}
             onMouseLeave={stopAutoScroll}
+            onPointerUp={stopAutoScroll}
             onClick={() => stepScroll('left')}
             disabled={!canScrollLeft}
             className={`h-9 w-9 rounded-lg flex items-center justify-center transition-all ${
@@ -210,7 +229,7 @@ export const TabBar: React.FC<TabBarProps> = ({
           <div
             ref={scrollContainerRef}
             onScroll={updateScrollState}
-            className="w-full flex items-center gap-1.5 overflow-x-auto py-2 px-1 scrollbar-none scroll-smooth touch-pan-x"
+            className="w-full flex items-center gap-1.5 overflow-x-auto py-2 px-1 scrollbar-none touch-pan-x"
           >
             <AnimatePresence initial={false}>
               {tabs.map((tab) => {
@@ -381,7 +400,11 @@ export const TabBar: React.FC<TabBarProps> = ({
             onMouseEnter={() => {
               if (canScrollRight) startAutoScroll('right');
             }}
+            onMouseMove={() => {
+              if (!animationFrameRef.current && canScrollRight) startAutoScroll('right');
+            }}
             onMouseLeave={stopAutoScroll}
+            onPointerUp={stopAutoScroll}
             onClick={() => stepScroll('right')}
             disabled={!canScrollRight}
             className={`h-9 w-9 rounded-lg flex items-center justify-center transition-all ${

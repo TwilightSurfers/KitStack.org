@@ -6,6 +6,7 @@ import { ShadowGlowTool } from '../components/tools/ShadowGlowTool';
 import { JsonFormatTool } from '../components/tools/JsonFormatTool';
 import { UnitConverterTool } from '../components/tools/UnitConverterTool';
 import { SharedLibraryExplorer } from '../components/tools/SharedLibraryExplorer';
+import { MarkdownBlogTool } from '../components/tools/MarkdownBlogTool';
 
 export const colorStudioPlugin: KitStackPlugin = {
   manifest: {
@@ -82,6 +83,21 @@ export const libraryExplorerPlugin: KitStackPlugin = {
   component: ({ context }) => <SharedLibraryExplorer accentColor={context.accentColor} />,
 };
 
+export const markdownBlogPlugin: KitStackPlugin = {
+  manifest: {
+    id: 'markdown-html',
+    name: 'Markdown Blog to Clean HTML',
+    tagline: 'Convert blog markdown to semantic HTML & clean AI artifacts',
+    description: 'Converts blog posts into semantic HTML (<h1>-<h3>, <p>, <ul>) with automated normalization for AI em-dashes, curly quotes, zero-width spaces, and CMS brackets.',
+    category: 'Code & Data',
+    icon: 'FileText',
+    badge: 'Publisher',
+    version: 'v1.0',
+    permissions: ['storage', 'notifications', 'clipboard', 'file-export'],
+  },
+  component: ({ context }) => <MarkdownBlogTool accentColor={context.accentColor} />,
+};
+
 /**
  * Initializes and registers the core built-in plugins into the registry.
  */
@@ -92,6 +108,7 @@ export function registerCorePlugins(): void {
     jsonFormatPlugin,
     unitConverterPlugin,
     libraryExplorerPlugin,
+    markdownBlogPlugin,
   ];
 
   corePlugins.forEach((plugin) => {
