@@ -100,6 +100,19 @@ export interface PluginContext {
 
   /** Download string or blob data as a file */
   downloadFile: (filename: string, content: string, mimeType?: string) => void;
+
+  /** Portable, collision-aware theme bubble hint tooltip component */
+  BubbleHint: React.ComponentType<PluginBubbleHintProps>;
+}
+
+export interface PluginBubbleHintProps {
+  content: React.ReactNode;
+  placement?: 'top' | 'bottom' | 'left' | 'right';
+  delay?: number;
+  disabled?: boolean;
+  offset?: number;
+  className?: string;
+  children: React.ReactElement;
 }
 
 export interface PluginComponentProps {

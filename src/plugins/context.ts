@@ -1,6 +1,7 @@
 import { PluginManifest, PluginContext, PluginNotificationOptions } from './types';
 import { createPluginStorage } from './registry';
 import { playNotificationChime } from '../utils/sound';
+import { BubbleHint } from '../components/shared/BubbleHint';
 
 interface CreatePluginContextArgs {
   manifest: PluginManifest;
@@ -98,5 +99,6 @@ export function createPluginContext({
     playChime,
     copyToClipboard,
     downloadFile,
+    BubbleHint,
   };
 }

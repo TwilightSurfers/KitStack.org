@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ColorPicker } from '../shared/ColorPicker';
 import { SharedToolbar } from '../shared/SharedToolbar';
+import { BubbleHint } from '../shared/BubbleHint';
 import { useNotifications } from '../../context/NotificationContext';
 import { pluginRegistry } from '../../plugins/registry';
 import { KitStackPlugin } from '../../plugins/types';
@@ -19,7 +20,8 @@ import {
   Sparkles,
   Plus,
   Radio,
-  FileText
+  FileText,
+  HelpCircle
 } from 'lucide-react';
 
 interface SharedLibraryExplorerProps {
@@ -589,6 +591,80 @@ export const MyCustomPlugin: KitStackPlugin = {
               >
                 {copiedSnippet === 'notif' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>Copy Snippet</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Component 3: Theme-Enabled BubbleHint */}
+          <div className="col-span-1 lg:col-span-2 p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <HelpCircle className="w-4 h-4 text-accent" />
+                <h4 className="text-xs font-bold text-neutral-900 dark:text-neutral-100">
+                  3. Theme-Enabled BubbleHint (Viewport Boundary Safe)
+                </h4>
+              </div>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300">
+                context.BubbleHint / components/shared/BubbleHint.tsx
+              </span>
+            </div>
+
+            <p className="text-xs text-neutral-500 dark:text-neutral-400">
+              Micro-styled floating tooltips that suppress native browser tooltips, clear large OS cursors with a 12px standoff, flip automatically when hitting screen edges, and support mobile touch.
+            </p>
+
+            <div className="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/40 border border-neutral-200/60 dark:border-neutral-700/60 flex flex-wrap items-center justify-around gap-4">
+              <BubbleHint content="Top hint with generous cursor standoff" placement="top">
+                <button
+                  type="button"
+                  className="px-3 py-2 rounded-lg text-xs font-medium border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:border-accent shadow-2xs transition-colors"
+                >
+                  Hover Top Hint
+                </button>
+              </BubbleHint>
+
+              <BubbleHint content="Bottom hint with collision detection" placement="bottom">
+                <button
+                  type="button"
+                  className="px-3 py-2 rounded-lg text-xs font-medium border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:border-accent shadow-2xs transition-colors"
+                >
+                  Hover Bottom Hint
+                </button>
+              </BubbleHint>
+
+              <BubbleHint content="Left hint flipped if near left border" placement="left">
+                <button
+                  type="button"
+                  className="px-3 py-2 rounded-lg text-xs font-medium border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:border-accent shadow-2xs transition-colors"
+                >
+                  Hover Left Hint
+                </button>
+              </BubbleHint>
+
+              <BubbleHint content="Right hint automatically clamped" placement="right">
+                <button
+                  type="button"
+                  className="px-3 py-2 rounded-lg text-xs font-medium border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:border-accent shadow-2xs transition-colors"
+                >
+                  Hover Right Hint
+                </button>
+              </BubbleHint>
+            </div>
+
+            <div className="flex justify-between items-center text-xs pt-1">
+              <span className="text-neutral-400 font-mono">&lt;context.BubbleHint content="..." placement="top"&gt;</span>
+              <button
+                onClick={() =>
+                  handleCopyCode(
+                    'bubble',
+                    `<context.BubbleHint content="Explain control" placement="top">\n  <button>Action</button>\n</context.BubbleHint>`,
+                    'BubbleHint'
+                  )
+                }
+                className="text-accent hover:underline flex items-center gap-1"
+              >
+                {copiedSnippet === 'bubble' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>Copy JSX</span>
               </button>
             </div>
           </div>

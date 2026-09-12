@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { OpenTab, TabStyle, ToolDefinition } from '../../types';
 import { REPOSITORY_TOOLS } from '../../data/tools';
+import { BubbleHint } from '../shared/BubbleHint';
 
 interface TabBarProps {
   tabs: OpenTab[];
@@ -190,29 +191,30 @@ export const TabBar: React.FC<TabBarProps> = ({
       <div className="flex items-center px-1 sm:px-2">
         {/* Scroll Left Button: 33% bigger chevron (21.3px), hover-triggered auto-scroll */}
         <div className="flex-shrink-0 z-20 flex items-center pr-1">
-          <button
-            type="button"
-            onMouseEnter={() => {
-              if (canScrollLeft) startAutoScroll('left');
-            }}
-            onMouseMove={() => {
-              if (!animationFrameRef.current && canScrollLeft) startAutoScroll('left');
-            }}
-            onMouseLeave={stopAutoScroll}
-            onPointerUp={stopAutoScroll}
-            onClick={() => stepScroll('left')}
-            disabled={!canScrollLeft}
-            className={`h-9 w-9 rounded-lg flex items-center justify-center transition-all ${
-              canScrollLeft
-                ? 'text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/80 dark:hover:bg-neutral-800 cursor-pointer shadow-xs active:scale-95'
-                : 'text-neutral-300 dark:text-neutral-700 opacity-30 cursor-default pointer-events-none'
-            }`}
-            title={canScrollLeft ? 'Hover to auto-scroll left' : 'Start of tabs'}
-            aria-label="Auto-scroll tabs left"
-          >
-            {/* 33% larger than standard 16px (16px * 1.33 = 21.3px) */}
-            <ChevronLeft className="w-[21.3px] h-[21.3px] flex-shrink-0" strokeWidth={2.25} />
-          </button>
+          <BubbleHint content="Auto-scroll tabs left" placement="bottom">
+            <button
+              type="button"
+              onMouseEnter={() => {
+                if (canScrollLeft) startAutoScroll('left');
+              }}
+              onMouseMove={() => {
+                if (!animationFrameRef.current && canScrollLeft) startAutoScroll('left');
+              }}
+              onMouseLeave={stopAutoScroll}
+              onPointerUp={stopAutoScroll}
+              onClick={() => stepScroll('left')}
+              disabled={!canScrollLeft}
+              className={`h-9 w-9 rounded-lg flex items-center justify-center transition-all ${
+                canScrollLeft
+                  ? 'text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/80 dark:hover:bg-neutral-800 cursor-pointer shadow-xs active:scale-95'
+                  : 'text-neutral-300 dark:text-neutral-700 opacity-30 cursor-default pointer-events-none'
+              }`}
+              aria-label="Auto-scroll tabs left"
+            >
+              {/* 33% larger than standard 16px (16px * 1.33 = 21.3px) */}
+              <ChevronLeft className="w-[21.3px] h-[21.3px] flex-shrink-0" strokeWidth={2.25} />
+            </button>
+          </BubbleHint>
         </div>
 
         {/* Scrollable Tabs Track Container with Left & Right Gradient Fades */}
@@ -298,26 +300,27 @@ export const TabBar: React.FC<TabBarProps> = ({
 
                       {/* Close Tab Button */}
                       {!isPinned && (
-                        <span
-                          role="button"
-                          tabIndex={0}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onCloseTab(tab.tabId);
-                          }}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
+                        <BubbleHint content="Close tab" placement="top">
+                          <span
+                            role="button"
+                            tabIndex={0}
+                            onClick={(e) => {
                               e.stopPropagation();
                               onCloseTab(tab.tabId);
-                            }
-                          }}
-                          className={`p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-opacity ${
-                            isActive ? 'opacity-90' : 'opacity-40 group-hover:opacity-100'
-                          }`}
-                          title="Close Tab"
-                        >
-                          <X className="w-3 h-3" />
-                        </span>
+                            }}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                e.stopPropagation();
+                                onCloseTab(tab.tabId);
+                              }
+                            }}
+                            className={`p-0.5 rounded-md hover:bg-neutral-300 dark:hover:bg-neutral-700 text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-opacity ${
+                              isActive ? 'opacity-90' : 'opacity-40 group-hover:opacity-100'
+                            }`}
+                          >
+                            <X className="w-3 h-3" />
+                          </span>
+                        </BubbleHint>
                       )}
                     </button>
 
@@ -373,15 +376,16 @@ export const TabBar: React.FC<TabBarProps> = ({
             </AnimatePresence>
 
             {/* New Tab Button */}
-            <button
-              type="button"
-              onClick={onOpenCatalog}
-              className="h-9 px-2.5 rounded-lg border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-500 hover:bg-white dark:hover:bg-neutral-800 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 flex items-center gap-1 text-xs font-medium transition-all flex-shrink-0 cursor-pointer"
-              title="Open Tool Catalog to Add New Tab"
-            >
-              <Plus className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">New Tool</span>
-            </button>
+            <BubbleHint content="Open Tool Catalog (New Tab)" placement="bottom">
+              <button
+                type="button"
+                onClick={onOpenCatalog}
+                className="h-9 px-2.5 rounded-lg border border-dashed border-neutral-300 dark:border-neutral-700 hover:border-neutral-400 dark:hover:border-neutral-500 hover:bg-white dark:hover:bg-neutral-800 text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 flex items-center gap-1 text-xs font-medium transition-all flex-shrink-0 cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">New Tool</span>
+              </button>
+            </BubbleHint>
           </div>
 
           {/* Right Fade Overlay: Visible only when tabs overflow to the right */}
@@ -395,29 +399,30 @@ export const TabBar: React.FC<TabBarProps> = ({
 
         {/* Scroll Right Button: 33% bigger chevron (21.3px), hover-triggered auto-scroll */}
         <div className="flex-shrink-0 z-20 flex items-center gap-1 pl-1">
-          <button
-            type="button"
-            onMouseEnter={() => {
-              if (canScrollRight) startAutoScroll('right');
-            }}
-            onMouseMove={() => {
-              if (!animationFrameRef.current && canScrollRight) startAutoScroll('right');
-            }}
-            onMouseLeave={stopAutoScroll}
-            onPointerUp={stopAutoScroll}
-            onClick={() => stepScroll('right')}
-            disabled={!canScrollRight}
-            className={`h-9 w-9 rounded-lg flex items-center justify-center transition-all ${
-              canScrollRight
-                ? 'text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/80 dark:hover:bg-neutral-800 cursor-pointer shadow-xs active:scale-95'
-                : 'text-neutral-300 dark:text-neutral-700 opacity-30 cursor-default pointer-events-none'
-            }`}
-            title={canScrollRight ? 'Hover to auto-scroll right' : 'End of tabs'}
-            aria-label="Auto-scroll tabs right"
-          >
-            {/* 33% larger than standard 16px (16px * 1.33 = 21.3px) */}
-            <ChevronRight className="w-[21.3px] h-[21.3px] flex-shrink-0" strokeWidth={2.25} />
-          </button>
+          <BubbleHint content="Auto-scroll tabs right" placement="bottom">
+            <button
+              type="button"
+              onMouseEnter={() => {
+                if (canScrollRight) startAutoScroll('right');
+              }}
+              onMouseMove={() => {
+                if (!animationFrameRef.current && canScrollRight) startAutoScroll('right');
+              }}
+              onMouseLeave={stopAutoScroll}
+              onPointerUp={stopAutoScroll}
+              onClick={() => stepScroll('right')}
+              disabled={!canScrollRight}
+              className={`h-9 w-9 rounded-lg flex items-center justify-center transition-all ${
+                canScrollRight
+                  ? 'text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/80 dark:hover:bg-neutral-800 cursor-pointer shadow-xs active:scale-95'
+                  : 'text-neutral-300 dark:text-neutral-700 opacity-30 cursor-default pointer-events-none'
+              }`}
+              aria-label="Auto-scroll tabs right"
+            >
+              {/* 33% larger than standard 16px (16px * 1.33 = 21.3px) */}
+              <ChevronRight className="w-[21.3px] h-[21.3px] flex-shrink-0" strokeWidth={2.25} />
+            </button>
+          </BubbleHint>
 
           {/* Mobile All-Tabs Grid Trigger */}
           <button

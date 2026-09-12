@@ -13,6 +13,7 @@ import {
 import { AppSettings } from '../../types';
 import { useNotifications } from '../../context/NotificationContext';
 import { NotificationCenter } from './NotificationCenter';
+import { BubbleHint } from '../shared/BubbleHint';
 
 interface HeaderProps {
   settings: AppSettings;
@@ -58,69 +59,83 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Center Search / Tool Quick Opener (Desktop) */}
       <div className="hidden md:flex items-center">
-        <button
-          onClick={onOpenCatalog}
-          className="flex items-center gap-2 px-3 py-1.5 text-xs text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 bg-neutral-100/70 dark:bg-neutral-800/60 hover:bg-neutral-200/60 dark:hover:bg-neutral-700/60 rounded-xl border border-neutral-200 dark:border-neutral-700/60 transition-all w-64 justify-between"
-        >
-          <div className="flex items-center gap-2">
-            <Search className="w-3.5 h-3.5" />
-            <span>Search or add tools...</span>
-          </div>
-          <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 text-neutral-500 dark:text-neutral-300">
-            Catalog
-          </kbd>
-        </button>
+        <BubbleHint content="Search & launch tools from repository (Catalog)" placement="bottom">
+          <button
+            onClick={onOpenCatalog}
+            className="flex items-center gap-2 px-3 py-1.5 text-xs text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 bg-neutral-100/70 dark:bg-neutral-800/60 hover:bg-neutral-200/60 dark:hover:bg-neutral-700/60 rounded-xl border border-neutral-200 dark:border-neutral-700/60 transition-all w-64 justify-between"
+          >
+            <div className="flex items-center gap-2">
+              <Search className="w-3.5 h-3.5" />
+              <span>Search or add tools...</span>
+            </div>
+            <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 text-neutral-500 dark:text-neutral-300">
+              Catalog
+            </kbd>
+          </button>
+        </BubbleHint>
       </div>
 
       {/* Right Actions: Catalog, Theme, Notifications, Settings */}
       <div className="flex items-center gap-1.5">
-        {/* Quick Add Tool Button for Mobile & Desktop */}
-        <button
-          onClick={onOpenCatalog}
-          className="md:hidden p-2 rounded-xl text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-          title="Browse Tool Catalog"
-        >
-          <Search className="w-4 h-4" />
-        </button>
+        {/* Quick Add Tool Button for Mobile */}
+        <div className="md:hidden">
+          <BubbleHint content="Browse Tool Catalog" placement="bottom">
+            <button
+              onClick={onOpenCatalog}
+              className="p-2 rounded-xl text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+            >
+              <Search className="w-4 h-4" />
+            </button>
+          </BubbleHint>
+        </div>
 
         {/* Quick Theme Toggle */}
-        <button
-          onClick={onToggleTheme}
-          className="p-2 rounded-xl text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
-          title={`Switch Theme (Current: ${settings.theme})`}
+        <BubbleHint
+          content={settings.theme === 'dark' ? 'Switch to Light mode' : 'Switch to Dark mode'}
+          placement="bottom"
         >
-          {settings.theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-amber-400" />
-          ) : (
-            <Moon className="w-4 h-4 text-neutral-600" />
-          )}
-        </button>
+          <button
+            onClick={onToggleTheme}
+            className="p-2 rounded-xl text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+          >
+            {settings.theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-amber-400" />
+            ) : (
+              <Moon className="w-4 h-4 text-neutral-600" />
+            )}
+          </button>
+        </BubbleHint>
 
         {/* Notifications Dropdown Button */}
         <div className="relative">
-          <button
-            onClick={() => setIsNotifOpen(!isNotifOpen)}
-            className="p-2 rounded-xl text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors relative"
-            title="Notifications & Activity"
+          <BubbleHint
+            content={unreadCount > 0 ? `${unreadCount} unread notification${unreadCount > 1 ? 's' : ''}` : 'Activity & notifications'}
+            placement="bottom"
           >
-            <Bell className="w-4 h-4" />
-            {unreadCount > 0 && (
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-accent ring-2 ring-white dark:ring-neutral-900 animate-pulse" />
-            )}
-          </button>
+            <button
+              onClick={() => setIsNotifOpen(!isNotifOpen)}
+              className="p-2 rounded-xl text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors relative"
+            >
+              <Bell className="w-4 h-4" />
+              {unreadCount > 0 && (
+                <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-accent ring-2 ring-white dark:ring-neutral-900 animate-pulse" />
+              )}
+            </button>
+          </BubbleHint>
 
           <NotificationCenter isOpen={isNotifOpen} onClose={() => setIsNotifOpen(false)} />
         </div>
 
         {/* Settings Button */}
-        <button
-          onClick={onOpenSettings}
-          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-neutral-200 dark:border-neutral-700/80 bg-neutral-50/50 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-200 text-xs font-semibold transition-all shadow-2xs"
-          title="Configure Color Preferences and Notifications"
-        >
-          <Settings className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
-          <span className="hidden sm:inline">Settings</span>
-        </button>
+        <BubbleHint content="Appearance, Theme & Audio Settings" placement="bottom">
+          <button
+            onClick={onOpenSettings}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-neutral-200 dark:border-neutral-700/80 bg-neutral-50/50 dark:bg-neutral-800/50 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-200 text-xs font-semibold transition-all shadow-2xs"
+          >
+            <Settings className="w-4 h-4 text-neutral-500 dark:text-neutral-400" />
+            <span className="hidden sm:inline">Settings</span>
+          </button>
+        </BubbleHint>
       </div>
     </header>
   );
