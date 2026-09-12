@@ -41,7 +41,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, 
               <button
                 onClick={markAllAsRead}
                 className="text-[11px] font-medium text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 flex items-center gap-1"
-                title="Mark all as read"
+                aria-label="Mark all as read"
               >
                 <Check className="w-3 h-3" />
                 <span>Mark read</span>
@@ -51,7 +51,7 @@ export const NotificationCenter: React.FC<NotificationCenterProps> = ({ isOpen, 
               <button
                 onClick={clearAll}
                 className="text-[11px] font-medium text-neutral-400 hover:text-rose-500 dark:hover:text-rose-400 flex items-center gap-1"
-                title="Clear all notifications"
+                aria-label="Clear all notifications"
               >
                 <Trash2 className="w-3 h-3" />
                 <span>Clear</span>

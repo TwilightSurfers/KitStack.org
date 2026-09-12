@@ -268,16 +268,21 @@ export const TabBar: React.FC<TabBarProps> = ({
                     transition={{ type: 'spring', damping: 25, stiffness: 350 }}
                     className="relative group flex-shrink-0"
                   >
-                    <button
-                      type="button"
-                      onClick={() => onSelectTab(tab.tabId)}
-                      onContextMenu={(e) => {
-                        e.preventDefault();
-                        setContextMenuTabId(contextMenuTabId === tab.tabId ? null : tab.tabId);
-                      }}
-                      className={`h-9 px-3 min-w-[44px] rounded-lg text-xs font-medium flex items-center gap-2 transition-all cursor-pointer ${tabClasses}`}
-                      title={`${tool.name} (Right-click for options)`}
+                    <BubbleHint
+                      content={`${tool.name} • Right-click for options`}
+                      placement="bottom"
+                      delay={350}
                     >
+                      <button
+                        type="button"
+                        onClick={() => onSelectTab(tab.tabId)}
+                        onContextMenu={(e) => {
+                          e.preventDefault();
+                          setContextMenuTabId(contextMenuTabId === tab.tabId ? null : tab.tabId);
+                        }}
+                        className={`h-9 px-3 min-w-[44px] rounded-lg text-xs font-medium flex items-center gap-2 transition-all cursor-pointer ${tabClasses}`}
+                        aria-label={`${tool.name} (Right-click for options)`}
+                      >
                       {/* Active Accent Indicator Dot for modern-pill */}
                       {isActive && tabStyle === 'modern-pill' && (
                         <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-accent" />
@@ -323,6 +328,7 @@ export const TabBar: React.FC<TabBarProps> = ({
                         </BubbleHint>
                       )}
                     </button>
+                  </BubbleHint>
 
                     {/* Context Menu for Tab actions */}
                     {contextMenuTabId === tab.tabId && (
@@ -425,15 +431,16 @@ export const TabBar: React.FC<TabBarProps> = ({
           </BubbleHint>
 
           {/* Mobile All-Tabs Grid Trigger */}
-          <button
-            type="button"
-            onClick={onOpenMobileSwitcher}
-            className="flex sm:hidden h-9 w-9 items-center justify-center rounded-lg text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-neutral-200/50 dark:hover:bg-neutral-800 transition-colors"
-            title="View open tabs grid"
-            aria-label="View open tabs grid"
-          >
-            <LayoutGrid className="w-4 h-4" />
-          </button>
+          <BubbleHint content="View open tabs grid" placement="bottom">
+            <button
+              type="button"
+              onClick={onOpenMobileSwitcher}
+              className="flex sm:hidden h-9 w-9 items-center justify-center rounded-lg text-neutral-500 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-neutral-200/50 dark:hover:bg-neutral-800 transition-colors"
+              aria-label="View open tabs grid"
+            >
+              <LayoutGrid className="w-4 h-4" />
+            </button>
+          </BubbleHint>
         </div>
       </div>
     </div>

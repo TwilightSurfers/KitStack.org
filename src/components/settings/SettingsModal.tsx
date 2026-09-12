@@ -403,7 +403,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     <button
                       type="button"
                       onClick={handleTestChime}
-                      title="Preview Chime Sound"
+                      aria-label="Preview Chime Sound"
                       className="p-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-500 text-xs flex items-center gap-1"
                     >
                       <Play className="w-3 h-3" />

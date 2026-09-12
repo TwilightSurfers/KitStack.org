@@ -134,7 +134,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
               addToHistory(e.target.value.toUpperCase());
             }}
             className="w-8 h-8 rounded-lg cursor-pointer border border-neutral-300 dark:border-neutral-700 bg-transparent p-0 overflow-hidden"
-            title="Pick color"
+            aria-label="Pick color"
           />
         </div>
         <input
@@ -188,7 +188,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
             <button
               type="button"
               onClick={handleCopy}
-              title="Copy HEX Code"
+              aria-label="Copy HEX Code"
               className="p-2 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-300 transition-colors"
             >
               {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
@@ -197,7 +197,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
               <button
                 type="button"
                 onClick={handleEyeDropper}
-                title="Eyedropper (Sample screen color)"
+                aria-label="Eyedropper (Sample screen color)"
                 className="p-2 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-300 transition-colors"
               >
                 <Pipette className="w-4 h-4" />
@@ -286,7 +286,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                 setHexInput(randomHex);
                 addToHistory(randomHex);
               }}
-              title="Random Color"
+              aria-label="Random Color"
               className="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200"
             >
               <RefreshCw className="w-3 h-3" />
@@ -307,7 +307,7 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
                     : 'border-neutral-300 dark:border-neutral-700'
                 }`}
                 style={{ backgroundColor: preset }}
-                title={preset}
+                aria-label={`Color preset ${preset}`}
               />
             ))}
           </div>

@@ -153,7 +153,7 @@ export const MobileTabSwitcher: React.FC<MobileTabSwitcherProps> = ({
                         onCloseTab(tab.tabId);
                       }}
                       className="p-2 rounded-lg text-neutral-400 hover:text-rose-500 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
-                      title="Close Tab"
+                      aria-label="Close Tab"
                     >
                       <X className="w-4 h-4" />
                     </button>

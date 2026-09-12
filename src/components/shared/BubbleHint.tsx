@@ -216,6 +216,9 @@ export const BubbleHint: React.FC<BubbleHintProps> = ({
   const enhancedChild = cloneElement(children, {
     ref: (node: HTMLElement | null) => {
       triggerRef.current = node;
+      if (node && node.hasAttribute('title')) {
+        node.removeAttribute('title');
+      }
       const childRef = (children as any).ref;
       if (typeof childRef === 'function') {
         childRef(node);

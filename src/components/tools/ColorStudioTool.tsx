@@ -190,7 +190,7 @@ export const ColorStudioTool: React.FC<ColorStudioToolProps> = ({ accentColor })
                   onClick={() => setBaseColor(tone.hex)}
                   className="h-full group relative cursor-pointer transition-transform hover:scale-y-105"
                   style={{ backgroundColor: tone.hex }}
-                  title={`${tone.label}: ${tone.hex}`}
+                  aria-label={`${tone.label}: ${tone.hex}`}
                 >
                   <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white px-1 rounded">
                     {tone.label}
