@@ -91,7 +91,7 @@ export const markdownBlogPlugin: KitStackPlugin = {
     description: 'Converts blog posts into semantic HTML (<h1>-<h3>, <p>, <ul>) with automated normalization for AI em-dashes, curly quotes, zero-width spaces, and CMS brackets.',
     category: 'Code & Data',
     icon: 'FileText',
-    badge: 'Publisher',
+    badge: 'New Tool',
     version: 'v1.0',
     permissions: ['storage', 'notifications', 'clipboard', 'file-export'],
   },

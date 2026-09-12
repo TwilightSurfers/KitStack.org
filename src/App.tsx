@@ -103,9 +103,11 @@ const DEFAULT_SETTINGS: AppSettings = {
 
 const DEFAULT_TABS: OpenTab[] = [
   { tabId: 'tab-1', toolId: 'color-studio', createdAt: 1, isPinned: true },
-  { tabId: 'tab-2', toolId: 'shadow-glow', createdAt: 2 },
-  { tabId: 'tab-3', toolId: 'json-format', createdAt: 3 },
-  { tabId: 'tab-4', toolId: 'library-explorer', createdAt: 4 },
+  { tabId: 'tab-2', toolId: 'markdown-html', createdAt: 2 },
+  { tabId: 'tab-3', toolId: 'shadow-glow', createdAt: 3 },
+  { tabId: 'tab-4', toolId: 'json-format', createdAt: 4 },
+  { tabId: 'tab-5', toolId: 'unit-converter', createdAt: 5 },
+  { tabId: 'tab-6', toolId: 'library-explorer', createdAt: 6 },
 ];
 
 export default function App() {
@@ -126,7 +128,18 @@ export default function App() {
         const saved = localStorage.getItem('kitstack_open_tabs');
         if (saved) {
           const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            // Auto-introduce newly added tools like markdown-html so returning users see them immediately
+            const hasMarkdown = parsed.some((t: OpenTab) => t.toolId === 'markdown-html');
+            if (!hasMarkdown) {
+              parsed.push({
+                tabId: `tab-${Date.now()}`,
+                toolId: 'markdown-html',
+                createdAt: Date.now(),
+              });
+            }
+            return parsed;
+          }
         }
       }
     } catch {
