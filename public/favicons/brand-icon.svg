@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Deep obsidian squircle background -->
+    <linearGradient id="kitstack-sq-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#161619" />
+      <stop offset="100%" stop-color="#050506" />
+    </linearGradient>
+
+    <!-- Subtle border highlight so the squircle boundary is visible even against pitch-black OLED / dark tab bars -->
+    <linearGradient id="kitstack-sq-border" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#44444c" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#24242a" stop-opacity="0.5" />
+    </linearGradient>
+  </defs>
+
+  <!-- Squircle Base -->
+  <rect 
+    x="12" 
+    y="12" 
+    width="488" 
+    height="488" 
+    rx="112" 
+    ry="112" 
+    fill="url(#kitstack-sq-bg)" 
+    stroke="url(#kitstack-sq-border)" 
+    stroke-width="12"
+  />
+
+  <!-- White KitStack Layers Brand Symbol -->
+  <g 
+    transform="translate(94, 94) scale(13.5)" 
+    fill="none" 
+    stroke="#FFFFFF" 
+    stroke-width="2.1" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+  >
+    <!-- Top layer diamond -->
+    <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" />
+    <!-- Middle layer chevron -->
+    <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" />
+    <!-- Bottom layer chevron -->
+    <path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" />
+  </g>
+</svg>
