@@ -38,95 +38,138 @@ export const BubbleHint: React.FC<BubbleHintProps> = ({
   const timerRef = useRef<number | null>(null);
   const touchDismissTimerRef = useRef<number | null>(null);
 
-  const calculatePosition = useCallback(() => {
-    if (!triggerRef.current) return;
-    const triggerRect = triggerRef.current.getBoundingClientRect();
-    const tooltipEl = tooltipRef.current;
+  const calculatePosition = useCallback(
+    (explicitNode?: HTMLElement | null) => {
+      if (!triggerRef.current) return;
+      const triggerRect = triggerRef.current.getBoundingClientRect();
+      const tooltipEl = explicitNode !== undefined ? explicitNode : tooltipRef.current;
 
-    // Default estimate if not measured yet
-    const tipWidth = tooltipEl ? tooltipEl.offsetWidth : 160;
-    const tipHeight = tooltipEl ? tooltipEl.offsetHeight : 34;
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      // Guarantee at least 12px (>= 8px) clearance from all viewport boundaries
+      const screenMargin = 12;
 
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    const screenMargin = 12; // Min gap from viewport boundary
-
-    let targetPlacement = placement;
-
-    // Viewport Boundary Collision Detection & Automatic Flipping
-    if (placement === 'top') {
-      if (triggerRect.top - tipHeight - offset < screenMargin) {
-        targetPlacement = 'bottom';
-      }
-    } else if (placement === 'bottom') {
-      if (triggerRect.bottom + tipHeight + offset > viewportHeight - screenMargin) {
-        targetPlacement = 'top';
-      }
-    } else if (placement === 'left') {
-      if (triggerRect.left - tipWidth - offset < screenMargin) {
-        targetPlacement = 'right';
-      }
-    } else if (placement === 'right') {
-      if (triggerRect.right + tipWidth + offset > viewportWidth - screenMargin) {
-        targetPlacement = 'left';
-      }
-    }
-
-    let top = 0;
-    let left = 0;
-    let arrowLeft: number | undefined;
-    let arrowTop: number | undefined;
-
-    const triggerCenterX = triggerRect.left + triggerRect.width / 2;
-    const triggerCenterY = triggerRect.top + triggerRect.height / 2;
-
-    if (targetPlacement === 'top' || targetPlacement === 'bottom') {
-      // Calculate centered X
-      left = triggerCenterX - tipWidth / 2;
-
-      // Clamp horizontally inside viewport boundaries
-      if (left < screenMargin) {
-        left = screenMargin;
-      } else if (left + tipWidth > viewportWidth - screenMargin) {
-        left = viewportWidth - screenMargin - tipWidth;
+      // Estimate width dynamically if element hasn't mounted yet
+      let estimatedWidth = 160;
+      if (typeof content === 'string') {
+        estimatedWidth = Math.min(320, Math.max(140, Math.ceil(content.length * 7.5 + 44)));
       }
 
-      // Calculate arrow position relative to tooltip box to point accurately at trigger
-      arrowLeft = Math.max(12, Math.min(tipWidth - 12, triggerCenterX - left));
+      let tipWidth = estimatedWidth;
+      let tipHeight = 34;
 
-      if (targetPlacement === 'top') {
-        top = triggerRect.top - tipHeight - offset;
+      if (tooltipEl) {
+        const rect = tooltipEl.getBoundingClientRect();
+        tipWidth = rect.width || tooltipEl.offsetWidth || estimatedWidth;
+        tipHeight = rect.height || tooltipEl.offsetHeight || 34;
+      }
+
+      let targetPlacement: BubblePlacement = (placement as BubblePlacement) || 'top';
+
+      // Viewport Boundary Collision Detection & Automatic Flipping
+      if (placement === 'top') {
+        if (triggerRect.top - tipHeight - offset < screenMargin) {
+          targetPlacement = 'bottom';
+        }
+      } else if (placement === 'bottom') {
+        if (triggerRect.bottom + tipHeight + offset > viewportHeight - screenMargin) {
+          targetPlacement = 'top';
+        }
+      } else if (placement === 'left') {
+        if (triggerRect.left - tipWidth - offset < screenMargin) {
+          targetPlacement = 'right';
+        }
+      } else if (placement === 'right') {
+        if (triggerRect.right + tipWidth + offset > viewportWidth - screenMargin) {
+          targetPlacement = 'left';
+        }
+      }
+
+      let top = 0;
+      let left = 0;
+      let arrowLeft: number | undefined;
+      let arrowTop: number | undefined;
+
+      const triggerCenterX = triggerRect.left + triggerRect.width / 2;
+      const triggerCenterY = triggerRect.top + triggerRect.height / 2;
+
+      if (targetPlacement === 'top' || targetPlacement === 'bottom') {
+        // Calculate centered X
+        left = triggerCenterX - tipWidth / 2;
+
+        // Clamp horizontally inside viewport boundaries: minimum screenMargin gap on left AND right
+        if (left < screenMargin) {
+          left = screenMargin;
+        }
+        if (left + tipWidth > viewportWidth - screenMargin) {
+          left = Math.max(screenMargin, viewportWidth - screenMargin - tipWidth);
+        }
+
+        // Calculate arrow position relative to tooltip box to point accurately at trigger
+        arrowLeft = Math.max(12, Math.min(tipWidth - 12, triggerCenterX - left));
+
+        if (targetPlacement === 'top') {
+          top = triggerRect.top - tipHeight - offset;
+          if (top < screenMargin) {
+            top = screenMargin;
+          }
+        } else {
+          top = triggerRect.bottom + offset;
+          if (top + tipHeight > viewportHeight - screenMargin) {
+            top = Math.max(screenMargin, viewportHeight - screenMargin - tipHeight);
+          }
+        }
       } else {
-        top = triggerRect.bottom + offset;
+        // Horizontal placement (left/right)
+        top = triggerCenterY - tipHeight / 2;
+
+        // Clamp vertically inside viewport
+        if (top < screenMargin) {
+          top = screenMargin;
+        }
+        if (top + tipHeight > viewportHeight - screenMargin) {
+          top = Math.max(screenMargin, viewportHeight - screenMargin - tipHeight);
+        }
+
+        arrowTop = Math.max(8, Math.min(tipHeight - 8, triggerCenterY - top));
+
+        if (targetPlacement === 'left') {
+          left = triggerRect.left - tipWidth - offset;
+          if (left < screenMargin) {
+            left = screenMargin;
+          }
+        } else {
+          left = triggerRect.right + offset;
+          if (left + tipWidth > viewportWidth - screenMargin) {
+            left = Math.max(screenMargin, viewportWidth - screenMargin - tipWidth);
+          }
+        }
       }
-    } else {
-      // Horizontal placement (left/right)
-      top = triggerCenterY - tipHeight / 2;
 
-      // Clamp vertically inside viewport
-      if (top < screenMargin) {
-        top = screenMargin;
-      } else if (top + tipHeight > viewportHeight - screenMargin) {
-        top = viewportHeight - screenMargin - tipHeight;
-      }
+      const newPos: PositionStyle = {
+        top: Math.round(top),
+        left: Math.round(left),
+        actualPlacement: targetPlacement,
+        arrowLeft,
+        arrowTop,
+      };
 
-      arrowTop = Math.max(8, Math.min(tipHeight - 8, triggerCenterY - top));
-
-      if (targetPlacement === 'left') {
-        left = triggerRect.left - tipWidth - offset;
-      } else {
-        left = triggerRect.right + offset;
-      }
-    }
-
-    setPosition({
-      top: Math.round(top),
-      left: Math.round(left),
-      actualPlacement: targetPlacement,
-      arrowLeft,
-      arrowTop,
-    });
-  }, [placement, offset]);
+      setPosition((prev) => {
+        if (
+          prev &&
+          prev.top === newPos.top &&
+          prev.left === newPos.left &&
+          prev.actualPlacement === newPos.actualPlacement &&
+          prev.arrowLeft === newPos.arrowLeft &&
+          prev.arrowTop === newPos.arrowTop
+        ) {
+          return prev;
+        }
+        return newPos;
+      });
+    },
+    [placement, offset, content]
+  );
 
   const show = useCallback(() => {
     if (disabled || !content) return;
@@ -170,10 +213,10 @@ export const BubbleHint: React.FC<BubbleHintProps> = ({
   // Recalculate on scroll, window resize, or dynamic layout shift
   useEffect(() => {
     if (!isVisible) return;
-    calculatePosition();
+    calculatePosition(tooltipRef.current);
 
-    const handleScroll = () => calculatePosition();
-    const handleResize = () => calculatePosition();
+    const handleScroll = () => calculatePosition(tooltipRef.current);
+    const handleResize = () => calculatePosition(tooltipRef.current);
 
     window.addEventListener('scroll', handleScroll, { passive: true, capture: true });
     window.addEventListener('resize', handleResize, { passive: true });
@@ -261,7 +304,12 @@ export const BubbleHint: React.FC<BubbleHintProps> = ({
           <AnimatePresence>
             {isVisible && position && (
               <motion.div
-                ref={tooltipRef}
+                ref={(node) => {
+                  tooltipRef.current = node;
+                  if (node) {
+                    calculatePosition(node);
+                  }
+                }}
                 role="tooltip"
                 initial={{ opacity: 0, scale: 0.94 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -273,7 +321,7 @@ export const BubbleHint: React.FC<BubbleHintProps> = ({
                   left: `${position.left}px`,
                   zIndex: 9999,
                 }}
-                className={`pointer-events-none select-none max-w-xs px-2.5 py-1.5 rounded-lg text-[11px] font-medium leading-normal tracking-tight shadow-xl backdrop-blur-md bg-neutral-900/95 dark:bg-neutral-800/95 text-neutral-100 dark:text-neutral-100 border border-neutral-700/70 dark:border-neutral-700/80 ${className}`}
+                className={`pointer-events-none select-none max-w-[calc(100vw-24px)] sm:max-w-xs px-2.5 py-1.5 rounded-lg text-[11px] font-medium leading-normal tracking-tight shadow-xl backdrop-blur-md bg-neutral-900/95 dark:bg-neutral-800/95 text-neutral-100 dark:text-neutral-100 border border-neutral-700/70 dark:border-neutral-700/80 ${className}`}
               >
                 {/* Micro theme accent indicator pill */}
                 <div className="flex items-center gap-1.5">
