@@ -7,7 +7,7 @@ import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { BubbleHint } from './BubbleHint';
 
-const HINT = 'Designed & vibe-coded by @TwilightSurfers on X';
+const HINT = 'Design and Development by @TwilightSurfers on X';
 
 /**
  * Fixed bottom-right designer credit badge (almost1st.lol style).
@@ -34,7 +34,7 @@ export const DesignerBadge: React.FC = () => {
       />
       <span className="flex flex-col leading-tight min-w-0">
         <span className="text-[9px] font-semibold tracking-wider uppercase text-accent opacity-85">
-          Designed by
+          Design &amp; Development by
         </span>
         <span className="text-xs font-semibold text-white inline-flex items-center gap-1">
           @TwilightSurfers

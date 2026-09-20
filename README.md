@@ -61,4 +61,4 @@ https://github.com/TwilightSurfers/KitStack.org
 
 ## Credit
 
-Designed & vibe-coded by [@TwilightSurfers](https://x.com/TwilightSurfers) on X.
+Design and Development by [@TwilightSurfers](https://x.com/TwilightSurfers) on X. Pushing deliberate systems.
