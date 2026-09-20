@@ -119,7 +119,7 @@ export const SiteFooter: React.FC<SiteFooterProps> = ({ onOpenLegal, accentColor
         </div>
 
         {/* Dedicated Bottom Copyright Bar — Completely separated from footer contents */}
-        <div className="border-t border-neutral-200/80 dark:border-neutral-800/80 py-4 px-4 sm:px-6">
+        <div className="border-t border-neutral-200/80 dark:border-neutral-800/80 py-4 pb-16 sm:pb-4 px-4 sm:px-6">
           <div className="mx-auto w-full max-w-7xl flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs text-neutral-500 dark:text-neutral-400 text-center">
             <a
               href="https://kitstack.org/"

@@ -10,9 +10,9 @@ import { BubbleHint } from './BubbleHint';
 const HINT = 'Design and Development by @TwilightSurfers on X';
 
 /**
- * Fixed bottom-right designer credit badge (almost1st.lol style).
+ * Fixed bottom-right designer credit badge.
  * Dark glass pill — stays dark in both light and dark app themes.
- * Lifted above SiteFooter (`bottom-24`) so links stay clickable.
+ * Positioned 16px from right/bottom on mobile, 32px on desktop.
  */
 export const DesignerBadge: React.FC = () => {
   return (
@@ -23,7 +23,7 @@ export const DesignerBadge: React.FC = () => {
         rel="noopener noreferrer"
         data-hint={HINT}
         aria-label={HINT}
-        className="fixed right-4 bottom-24 z-40 inline-flex items-center gap-2.5 rounded-full px-3 py-2 transition-all duration-200 group bg-[rgba(11,15,25,0.84)] backdrop-blur-[12px] border border-accent-subtle shadow-[0_0_20px_var(--theme-accent-ring),0_4px_16px_rgba(0,0,0,0.35)] hover:border-accent hover:shadow-[0_0_28px_var(--theme-accent-ring),0_4px_20px_rgba(0,0,0,0.4)]"
+        className="fixed right-4 bottom-4 sm:right-8 sm:bottom-8 z-40 inline-flex items-center gap-2.5 rounded-full px-3 py-2 transition-all duration-200 group bg-[rgba(11,15,25,0.84)] backdrop-blur-[12px] border border-accent-subtle shadow-[0_0_20px_var(--theme-accent-ring),0_4px_16px_rgba(0,0,0,0.35)] hover:border-accent hover:shadow-[0_0_28px_var(--theme-accent-ring),0_4px_20px_rgba(0,0,0,0.4)]"
       >
       <img
         src="https://unavatar.io/x/TwilightSurfers"
