@@ -7,6 +7,7 @@ import { JsonFormatTool } from '../components/tools/JsonFormatTool';
 import { UnitConverterTool } from '../components/tools/UnitConverterTool';
 import { SharedLibraryExplorer } from '../components/tools/SharedLibraryExplorer';
 import { MarkdownBlogTool } from '../components/tools/MarkdownBlogTool';
+import { SixtyFourPxTool } from '../components/tools/SixtyFourPxTool';
 
 export const colorStudioPlugin: KitStackPlugin = {
   manifest: {
@@ -98,6 +99,21 @@ export const markdownBlogPlugin: KitStackPlugin = {
   component: ({ context }) => <MarkdownBlogTool accentColor={context.accentColor} />,
 };
 
+export const sixtyFourPxPlugin: KitStackPlugin = {
+  manifest: {
+    id: 'sixty-four-px',
+    name: '64 px',
+    tagline: '5×3 modular grid simulator & 8/16/32/64px responsive layout engine',
+    description: 'Simulate responsive page containers with 5 rows of 3 color-coordinated columns (15 squares). Experiment with mobile collapsing, flex & grid properties, and an 8/16/32/64px spacing scale with instant CSS export.',
+    category: 'CSS & Layout',
+    icon: 'LayoutGrid',
+    badge: '64px Scale',
+    version: 'v1.0',
+    permissions: ['storage', 'notifications', 'clipboard', 'file-export'],
+  },
+  component: ({ context }) => <SixtyFourPxTool accentColor={context.accentColor} />,
+};
+
 /**
  * Initializes and registers the core built-in plugins into the registry.
  */
@@ -109,6 +125,7 @@ export function registerCorePlugins(): void {
     unitConverterPlugin,
     libraryExplorerPlugin,
     markdownBlogPlugin,
+    sixtyFourPxPlugin,
   ];
 
   corePlugins.forEach((plugin) => {

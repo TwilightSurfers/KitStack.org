@@ -12,7 +12,8 @@ import {
   ArrowRight,
   Sparkles,
   ExternalLink,
-  FileText
+  FileText,
+  LayoutGrid
 } from 'lucide-react';
 import { REPOSITORY_TOOLS } from '../../data/tools';
 import { ToolDefinition } from '../../types';
@@ -39,6 +40,8 @@ const getToolIcon = (iconName: string) => {
       return Boxes;
     case 'FileText':
       return FileText;
+    case 'LayoutGrid':
+      return LayoutGrid;
     default:
       return Sparkles;
   }

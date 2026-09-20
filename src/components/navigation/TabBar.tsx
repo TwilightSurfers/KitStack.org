@@ -62,6 +62,8 @@ const getToolIcon = (iconName: string) => {
       return Boxes;
     case 'FileText':
       return FileText;
+    case 'LayoutGrid':
+      return LayoutGrid;
     default:
       return Sparkles;
   }

@@ -103,11 +103,12 @@ const DEFAULT_SETTINGS: AppSettings = {
 
 const DEFAULT_TABS: OpenTab[] = [
   { tabId: 'tab-1', toolId: 'color-studio', createdAt: 1, isPinned: true },
-  { tabId: 'tab-2', toolId: 'markdown-html', createdAt: 2 },
-  { tabId: 'tab-3', toolId: 'shadow-glow', createdAt: 3 },
-  { tabId: 'tab-4', toolId: 'json-format', createdAt: 4 },
-  { tabId: 'tab-5', toolId: 'unit-converter', createdAt: 5 },
-  { tabId: 'tab-6', toolId: 'library-explorer', createdAt: 6 },
+  { tabId: 'tab-2', toolId: 'sixty-four-px', createdAt: 2 },
+  { tabId: 'tab-3', toolId: 'markdown-html', createdAt: 3 },
+  { tabId: 'tab-4', toolId: 'shadow-glow', createdAt: 4 },
+  { tabId: 'tab-5', toolId: 'json-format', createdAt: 5 },
+  { tabId: 'tab-6', toolId: 'unit-converter', createdAt: 6 },
+  { tabId: 'tab-7', toolId: 'library-explorer', createdAt: 7 },
 ];
 
 export default function App() {
@@ -129,13 +130,21 @@ export default function App() {
         if (saved) {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            // Auto-introduce newly added tools like markdown-html so returning users see them immediately
+            // Auto-introduce newly added tools like sixty-four-px so returning users see them immediately
+            const hasSixtyFour = parsed.some((t: OpenTab) => t.toolId === 'sixty-four-px');
+            if (!hasSixtyFour) {
+              parsed.splice(1, 0, {
+                tabId: `tab-${Date.now()}`,
+                toolId: 'sixty-four-px',
+                createdAt: Date.now(),
+              });
+            }
             const hasMarkdown = parsed.some((t: OpenTab) => t.toolId === 'markdown-html');
             if (!hasMarkdown) {
               parsed.push({
-                tabId: `tab-${Date.now()}`,
+                tabId: `tab-${Date.now() + 1}`,
                 toolId: 'markdown-html',
-                createdAt: Date.now(),
+                createdAt: Date.now() + 1,
               });
             }
             return parsed;
