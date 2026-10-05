@@ -15,7 +15,8 @@ import {
   Sparkles,
   Copy,
   LayoutGrid,
-  FileText
+  FileText,
+  Share2
 } from 'lucide-react';
 import { OpenTab, TabStyle, ToolDefinition } from '../../types';
 import { REPOSITORY_TOOLS } from '../../data/tools';
@@ -64,6 +65,8 @@ const getToolIcon = (iconName: string) => {
       return FileText;
     case 'LayoutGrid':
       return LayoutGrid;
+    case 'Share2':
+      return Share2;
     default:
       return Sparkles;
   }

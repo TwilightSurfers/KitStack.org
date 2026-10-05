@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Plus, Pin, Palette, Layers, FileCode, Ruler, Boxes, Sparkles, Check, FileText, LayoutGrid } from 'lucide-react';
+import { X, Plus, Pin, Palette, Layers, FileCode, Ruler, Boxes, Sparkles, Check, FileText, LayoutGrid, Share2 } from 'lucide-react';
 import { OpenTab } from '../../types';
 import { REPOSITORY_TOOLS } from '../../data/tools';
 
@@ -45,6 +45,8 @@ const getToolIcon = (iconName: string) => {
       return FileText;
     case 'LayoutGrid':
       return LayoutGrid;
+    case 'Share2':
+      return Share2;
     default:
       return Sparkles;
   }

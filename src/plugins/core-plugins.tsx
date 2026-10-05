@@ -8,6 +8,7 @@ import { UnitConverterTool } from '../components/tools/UnitConverterTool';
 import { SharedLibraryExplorer } from '../components/tools/SharedLibraryExplorer';
 import { MarkdownBlogTool } from '../components/tools/MarkdownBlogTool';
 import { SixtyFourPxTool } from '../components/tools/SixtyFourPxTool';
+import { SocialSnippetTool } from '../components/tools/SocialSnippetTool';
 
 export const colorStudioPlugin: KitStackPlugin = {
   manifest: {
@@ -114,6 +115,21 @@ export const sixtyFourPxPlugin: KitStackPlugin = {
   component: ({ context }) => <SixtyFourPxTool accentColor={context.accentColor} />,
 };
 
+export const socialSnippetPlugin: KitStackPlugin = {
+  manifest: {
+    id: 'social-snippet',
+    name: 'Social Snippet & OG Previewer',
+    tagline: 'Live Open Graph, Twitter cards, cache-busting & meta audit',
+    description: 'Preview links across X, Facebook, LinkedIn, Discord & Slack. Test live sites with aggressive cache-busting, bot defense, and instant tag health diagnostics.',
+    category: 'Code & Data',
+    icon: 'Share2',
+    badge: 'Live OG',
+    version: 'v1.0',
+    permissions: ['storage', 'notifications', 'clipboard', 'file-export'],
+  },
+  component: ({ context }) => <SocialSnippetTool accentColor={context.accentColor} />,
+};
+
 /**
  * Initializes and registers the core built-in plugins into the registry.
  */
@@ -126,6 +142,7 @@ export function registerCorePlugins(): void {
     libraryExplorerPlugin,
     markdownBlogPlugin,
     sixtyFourPxPlugin,
+    socialSnippetPlugin,
   ];
 
   corePlugins.forEach((plugin) => {

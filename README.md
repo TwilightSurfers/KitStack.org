@@ -18,6 +18,9 @@ License headers in source use **Apache-2.0**.
 | Tool | What it does |
 |------|----------------|
 | **Color & Palette Studio** | Harmonic palettes, WCAG contrast, CSS/Tailwind export |
+| **Social Snippet & OG Previewer** | Live Open Graph & Twitter card preview, cache-busting & meta audit |
+| **64 px** | 5×3 modular grid simulator & 8/16/32/64px responsive layout engine |
+| **Markdown Blog to Clean HTML** | Convert blog markdown to semantic HTML & clean AI artifacts |
 | **CSS Shadow & Glow Builder** | Multi-layer elevations, ambient glows, inset shadows |
 | **JSON & Token Inspector** | Format, validate, minify, inspect payload structure |
 | **Responsive Unit & Clamp() Tool** | PX/REM/viewport conversion and fluid `clamp()` math |
