@@ -9,6 +9,7 @@ import { SharedLibraryExplorer } from '../components/tools/SharedLibraryExplorer
 import { MarkdownBlogTool } from '../components/tools/MarkdownBlogTool';
 import { SixtyFourPxTool } from '../components/tools/SixtyFourPxTool';
 import { SocialSnippetTool } from '../components/tools/SocialSnippetTool';
+import { FooterDesignerTool } from '../components/tools/FooterDesignerTool';
 
 export const colorStudioPlugin: KitStackPlugin = {
   manifest: {
@@ -130,6 +131,21 @@ export const socialSnippetPlugin: KitStackPlugin = {
   component: ({ context }) => <SocialSnippetTool accentColor={context.accentColor} />,
 };
 
+export const footerDesignerPlugin: KitStackPlugin = {
+  manifest: {
+    id: 'footer-designer',
+    name: 'Website Footer Designer',
+    tagline: '5 stylish archetypes, 1-6 columns, modular CSS, semantic HTML & AI prompt export',
+    description: 'Design production-grade, accessible website footers with Corporate, Medical, Creative, SaaS & E-Commerce presets. Customize columns, reorder blocks, and export semantic HTML, modular CSS, Tailwind, React, and LLM prompts.',
+    category: 'CSS & Layout',
+    icon: 'PanelBottom',
+    badge: 'New Tool',
+    version: 'v1.0',
+    permissions: ['storage', 'notifications', 'clipboard', 'file-export'],
+  },
+  component: ({ context }) => <FooterDesignerTool accentColor={context.accentColor} />,
+};
+
 /**
  * Initializes and registers the core built-in plugins into the registry.
  */
@@ -143,6 +159,7 @@ export function registerCorePlugins(): void {
     markdownBlogPlugin,
     sixtyFourPxPlugin,
     socialSnippetPlugin,
+    footerDesignerPlugin,
   ];
 
   corePlugins.forEach((plugin) => {

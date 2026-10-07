@@ -16,7 +16,8 @@ import {
   Copy,
   LayoutGrid,
   FileText,
-  Share2
+  Share2,
+  PanelBottom
 } from 'lucide-react';
 import { OpenTab, TabStyle, ToolDefinition } from '../../types';
 import { REPOSITORY_TOOLS } from '../../data/tools';
@@ -67,6 +68,8 @@ const getToolIcon = (iconName: string) => {
       return LayoutGrid;
     case 'Share2':
       return Share2;
+    case 'PanelBottom':
+      return PanelBottom;
     default:
       return Sparkles;
   }

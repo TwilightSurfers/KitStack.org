@@ -14,7 +14,8 @@ import {
   ExternalLink,
   FileText,
   LayoutGrid,
-  Share2
+  Share2,
+  PanelBottom
 } from 'lucide-react';
 import { REPOSITORY_TOOLS } from '../../data/tools';
 import { ToolDefinition } from '../../types';
@@ -45,6 +46,8 @@ const getToolIcon = (iconName: string) => {
       return LayoutGrid;
     case 'Share2':
       return Share2;
+    case 'PanelBottom':
+      return PanelBottom;
     default:
       return Sparkles;
   }

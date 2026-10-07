@@ -103,6 +103,7 @@ const DEFAULT_SETTINGS: AppSettings = {
 
 const DEFAULT_TABS: OpenTab[] = [
   { tabId: 'tab-1', toolId: 'color-studio', createdAt: 1, isPinned: true },
+  { tabId: 'tab-9', toolId: 'footer-designer', createdAt: 1.5 },
   { tabId: 'tab-2', toolId: 'social-snippet', createdAt: 2 },
   { tabId: 'tab-3', toolId: 'sixty-four-px', createdAt: 3 },
   { tabId: 'tab-4', toolId: 'markdown-html', createdAt: 4 },
@@ -131,10 +132,18 @@ export default function App() {
         if (saved) {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            // Auto-introduce newly added tools like social-snippet and sixty-four-px so returning users see them immediately
+            // Auto-introduce newly added tools so returning users see them immediately
+            const hasFooter = parsed.some((t: OpenTab) => t.toolId === 'footer-designer');
+            if (!hasFooter) {
+              parsed.splice(1, 0, {
+                tabId: `tab-${Date.now() + 3}`,
+                toolId: 'footer-designer',
+                createdAt: Date.now() + 3,
+              });
+            }
             const hasSocial = parsed.some((t: OpenTab) => t.toolId === 'social-snippet');
             if (!hasSocial) {
-              parsed.splice(1, 0, {
+              parsed.splice(2, 0, {
                 tabId: `tab-${Date.now()}`,
                 toolId: 'social-snippet',
                 createdAt: Date.now(),
@@ -142,7 +151,7 @@ export default function App() {
             }
             const hasSixtyFour = parsed.some((t: OpenTab) => t.toolId === 'sixty-four-px');
             if (!hasSixtyFour) {
-              parsed.splice(2, 0, {
+              parsed.splice(3, 0, {
                 tabId: `tab-${Date.now() + 1}`,
                 toolId: 'sixty-four-px',
                 createdAt: Date.now() + 1,
